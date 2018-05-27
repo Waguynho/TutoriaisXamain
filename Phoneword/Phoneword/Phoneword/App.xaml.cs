@@ -1,15 +1,17 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.Generic;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phoneword
 {
     public partial class App : Application
     {
+       
         public App()
         {
-            InitializeComponent();
-            MainPage = new MainPage(); 
+            InitializeComponent();            
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
