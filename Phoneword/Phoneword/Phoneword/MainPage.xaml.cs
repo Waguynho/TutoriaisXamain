@@ -18,7 +18,6 @@ namespace Phoneword
         void OnTranslate(object sender, EventArgs e)
         {
 
-
             translatedNumber = Core.PhonewordTranslator.ToNumber(phoneNumberText.Text);
 
             if (!string.IsNullOrWhiteSpace(translatedNumber))
@@ -54,5 +53,11 @@ namespace Phoneword
         {
             await Navigation.PushAsync(new CallHistoryPage(PhoneNumbers));
         }
+
+        async void OnHelooMonster(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HelloMonsterView());
+        }
+
     }
 }
