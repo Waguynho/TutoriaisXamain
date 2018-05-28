@@ -6,35 +6,18 @@ namespace Phoneword
     {
         public HelloMonsterView()
         {
-            var red = new Label
+            var listView = new ListView
             {
-                Text = "Stop",
-                BackgroundColor = Color.Red,
-                FontSize = 20,
-                WidthRequest = 100
+                RowHeight = 40
             };
-            var yellow = new Label
+            listView.ItemsSource = new string[]
             {
-                Text = "Slow down",
-                BackgroundColor = Color.Yellow,
-                FontSize = 20,
-                WidthRequest = 100
+                "Buy pears", "Buy oranges", "Buy mangos", "Buy apples", "Buy bananas"
             };
-            var green = new Label
-            {
-                Text = "Go",
-                BackgroundColor = Color.Green,
-                FontSize = 20,
-                WidthRequest = 200
-            };
-
             Content = new StackLayout
             {
-                Spacing = 20,
-                VerticalOptions = LayoutOptions.End,
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.Start,
-                Children = { red, yellow, green }
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                Children = { listView }
             };
         }
     }
