@@ -1,6 +1,6 @@
+using Phoneword.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Collections.Generic;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Phoneword
@@ -12,6 +12,8 @@ namespace Phoneword
         {
             InitializeComponent();            
             MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new GridAdvancedView());
+            
         }
 
         protected override void OnStart()

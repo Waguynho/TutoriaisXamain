@@ -16,7 +16,7 @@ namespace Phoneword
             Button btnToGrid = new Button
             {
                 Text = "Grids",                
-                VerticalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.Center,
                 CornerRadius = 5,
                 Command = new Command(async () => {
                     await Navigation.PushAsync(new GridAdvancedView());
@@ -26,7 +26,7 @@ namespace Phoneword
             Button btnToDataTemplate = new Button
             {
                 Text = "DataTemplates",
-                VerticalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.Center,
                 CornerRadius = 5,
                 Command = new Command(async() => {
 
