@@ -15,7 +15,6 @@ using Android.App;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Application(Theme = "@android:style/Theme.Material")]
 
 // Version information for an assembly consists of the following four values:
 //

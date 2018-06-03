@@ -14,6 +14,7 @@ namespace Phoneword
         {
             InitializeComponent();
             PhoneNumbers = new List<string>();
+            Title = "Main Page";
         }
 
         void OnTranslate(object sender, EventArgs e)

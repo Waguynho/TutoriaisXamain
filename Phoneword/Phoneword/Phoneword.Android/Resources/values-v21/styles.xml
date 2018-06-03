@@ -6,7 +6,7 @@
     <item name="windowNoTitle">true</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
     <item name="windowActionBar">false</item>
-    
+
     <!-- colorPrimary is used for the default action bar background -->
     <item name="android:colorPrimary">@color/color_a</item>
     <item name="android:windowBackground">@color/color_b</item>
