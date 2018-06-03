@@ -8,6 +8,7 @@ namespace Phoneword.Views
         public DataTemplateAdvancedView()
         {
             Title = "TaskList";
+            BackgroundColor = Color.FromHex("#00001a");
 
             var listView = new ListView
             {
@@ -43,7 +44,10 @@ namespace Phoneword.Views
                 var done = new Label();
 
                 task.SetBinding(Label.TextProperty, "Name");
+                task.TextColor = Color.White;
+
                 done.SetBinding(Label.TextProperty, "Done");
+
                 var convertColor = new BoolToColorConverter();
                 convertColor.Convert(this, typeof(Color), null, null);
                 done.SetBinding(Label.TextColorProperty, new Binding("Done", BindingMode.TwoWay, convertColor));

@@ -10,7 +10,7 @@ namespace Phoneword.Converters
         {
             if (value.GetType() == typeof(bool))
             {
-                return (bool)value == true ? Color.Blue : Color.Red;
+                return (bool)value == true ? Color.GreenYellow : Color.Red;
             }
 
             return Color.Blue;
