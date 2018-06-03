@@ -2,6 +2,6 @@
 <resources>
   <color name="color_a">#000080</color>
   <color name="color_b">#00001a</color>
-  <color name="color3">#303F9F</color>
-  <color name="color4">#FF4081</color>
+  <color name="color_c">#ffffcc</color>
+  <color name="color_d">#ffffff</color>
 </resources>

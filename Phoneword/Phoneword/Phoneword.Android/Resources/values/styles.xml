@@ -10,6 +10,11 @@
     <!-- colorPrimary is used for the default action bar background -->
     <item name="android:colorPrimary">@color/color_a</item>
     <item name="android:windowBackground">@color/color_b</item>
+    <item name="android:colorAccent">@color/color_c</item>
+    <item name="android:textColorPrimary">@color/color_d</item>
+
+    
+    <item name="windowActionModeOverlay">true</item>
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
   </style>
 
