@@ -107,7 +107,7 @@ namespace Phoneword.Views
             {
                 Text = "Cell 11",
                 TextColor = Color.Purple,
-                BackgroundColor = Color.AliceBlue
+                BackgroundColor = Color.Red
             }, 2, 2 );
 
 

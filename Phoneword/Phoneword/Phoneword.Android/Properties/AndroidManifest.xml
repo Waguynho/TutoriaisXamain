@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.companyname.Phoneword" android:installLocation="auto" android:versionCode="1" android:versionName="1.0">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="22" />
-	<application android:label="Phoneword.Android"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Phoneword">
+  <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
+  <application android:label="Phoneword.Android"></application>
 </manifest>

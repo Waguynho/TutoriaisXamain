@@ -17,7 +17,6 @@ namespace Phoneword
             {
                 Text = "Grids",                
                 VerticalOptions = LayoutOptions.Center,
-                CornerRadius = 5,
                 Command = new Command(async () => {
                     await Navigation.PushAsync(new GridAdvancedView());
                 })
@@ -27,7 +26,7 @@ namespace Phoneword
             {
                 Text = "DataTemplates",
                 VerticalOptions = LayoutOptions.Center,
-                CornerRadius = 5,
+                //CornerRadius = 5,
                 Command = new Command(async() => {
 
                     await Navigation.PushAsync(new DataTemplateAdvancedView());
