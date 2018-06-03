@@ -17,6 +17,10 @@ namespace Phoneword
             {
                 Text = "Grids",                
                 VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center,
+#pragma warning disable CS0618 // Type or member is obsolete
+                BorderRadius = 20,
+#pragma warning restore CS0618 // Type or member is obsolete
                 Command = new Command(async () => {
                     await Navigation.PushAsync(new GridAdvancedView());
                 })
@@ -26,7 +30,10 @@ namespace Phoneword
             {
                 Text = "DataTemplates",
                 VerticalOptions = LayoutOptions.Center,
-                //CornerRadius = 5,
+                HorizontalOptions = LayoutOptions.Center,
+#pragma warning disable CS0618 // Type or member is obsolete
+                BorderRadius = 20,
+#pragma warning restore CS0618 // Type or member is obsolete
                 Command = new Command(async() => {
 
                     await Navigation.PushAsync(new DataTemplateAdvancedView());

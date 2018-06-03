@@ -35,7 +35,7 @@ namespace Phoneword.Views
             grid.Children.Add(new Label
             {
                 Text = "Cell 1",
-                BackgroundColor = Color.Yellow,
+                BackgroundColor = Color.Green,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                 HorizontalOptions = LayoutOptions.Center
             }, 0, 0);

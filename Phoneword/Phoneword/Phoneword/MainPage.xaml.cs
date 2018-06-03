@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
+
 namespace Phoneword
 {
     public partial class MainPage : ContentPage
@@ -34,18 +35,18 @@ namespace Phoneword
 
         async void OnCall(object sender, EventArgs e)
         {
-            if (await this.DisplayAlert(
-                    "Dial a Number",
-                    "Would you like to call " + translatedNumber + "?",
-                    "Yes",
-                    "No"))
+            try
             {
                 var dialer = DependencyService.Get<IDialer>();
                 if (dialer != null)
                 {
-                    dialer.Dial(translatedNumber);
+                    var result = dialer.Dial(translatedNumber);
                     PhoneNumbers.Add(translatedNumber);
                 }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Erro", ex.Message, "OK");
             }
         }
 
