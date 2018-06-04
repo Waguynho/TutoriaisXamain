@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace Phoneword.Droid
 {
-    [Activity(Theme = "@style/MyCustomTheme", Label = "Phoneword", Icon = "@drawable/icon",  MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity( Label = "Phoneword", Icon = "@drawable/money",  MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
