@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Phoneword.Localization;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
@@ -15,6 +16,7 @@ namespace Phoneword
             InitializeComponent();
             PhoneNumbers = new List<string>();
             Title = "Main Page";
+            callButton.Text = LanguageResource.call;
         }
 
         void OnTranslate(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Phoneword.Converters;
+using Phoneword.Localization;
 using Xamarin.Forms;
 
 namespace Phoneword.Views
@@ -7,7 +8,7 @@ namespace Phoneword.Views
     {
         public DataTemplateAdvancedView()
         {
-            Title = "TaskList";
+            Title = LanguageResource.task_list;
             BackgroundColor = Color.FromHex("#00001a");
 
             var listView = new ListView
@@ -49,7 +50,8 @@ namespace Phoneword.Views
                 done.SetBinding(Label.TextProperty, "Done");
 
                 var convertColor = new BoolToColorConverter();
-                convertColor.Convert(this, typeof(Color), null, null);
+                string parametros = "Teste de parâmetros";
+                convertColor.Convert(this, typeof(Color), parametros, null);
                 done.SetBinding(Label.TextColorProperty, new Binding("Done", BindingMode.TwoWay, convertColor));
 
                 grid.Children.Add(task, 0, 0);

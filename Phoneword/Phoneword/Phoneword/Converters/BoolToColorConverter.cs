@@ -10,6 +10,8 @@ namespace Phoneword.Converters
         {
             if (value.GetType() == typeof(bool))
             {
+                string array = parameter as string; 
+
                 return (bool)value == true ? Color.GreenYellow : Color.Red;
             }
 

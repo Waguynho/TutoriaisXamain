@@ -1,3 +1,4 @@
+using Phoneword.Localization;
 using Phoneword.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,14 +11,20 @@ namespace Phoneword
        
         public App()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            #region Select Language
+            //FORÇA TROCA DE LINGUAGEM
+            //LanguageResource.Culture = new System.Globalization.CultureInfo("pt-BR");
+            #endregion
+
             MainPage = new NavigationPage(new MainPage());
-            //MainPage = new NavigationPage(new GridAdvancedView());
-            
+           // MainPage = new NavigationPage(new DataTemplateAdvancedView());
         }
 
         protected override void OnStart()
         {
+            
             // Handle when your app starts
         }
 
