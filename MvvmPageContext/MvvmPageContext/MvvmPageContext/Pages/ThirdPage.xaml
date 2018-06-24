@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MvvmPageContext.Pages.ThirdPage">
+
+    <StackLayout
+       VerticalOptions="CenterAndExpand"
+       HorizontalOptions="CenterAndExpand"
+       BackgroundColor="Black">
+        <Image Source="microsoftHubRocks.png" />
+
+        <StackLayout Padding="10">
+            <Label Text="Third Page »" />
+            <Button Text="Show Message"
+             BackgroundColor="Red" Command="{Binding ShowCustomMessageCommand}"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
+

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="FirstViewModel"
+             x:Class="MvvmPageContext.Pages.FirstPage">
+    <StackLayout
+       VerticalOptions="StartAndExpand"
+       HorizontalOptions="CenterAndExpand"
+       BackgroundColor="Black">
+        <Image Source="microsoftHubRocks.png" />
+
+        <StackLayout Padding="10">
+            <Label Text="Frist Page »" />
+            <Button Text="Go to Second Page"
+             BackgroundColor="Yellow" Command="{Binding GoToSecondPageCommand}" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
