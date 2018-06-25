@@ -22,7 +22,7 @@ namespace Phoneword.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LanguageResource {
+    public class LanguageResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Phoneword.Localization {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Phoneword.Localization.LanguageResource", typeof(LanguageResource).Assembly);
@@ -51,7 +51,7 @@ namespace Phoneword.Localization {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,9 @@ namespace Phoneword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Call....
+        ///   Looks up a localized string similar to Call.
         /// </summary>
-        internal static string call {
+        public static string call {
             get {
                 return ResourceManager.GetString("call", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Phoneword.Localization {
         /// <summary>
         ///   Looks up a localized string similar to -Task List-.
         /// </summary>
-        internal static string task_list {
+        public static string task_list {
             get {
                 return ResourceManager.GetString("task_list", resourceCulture);
             }

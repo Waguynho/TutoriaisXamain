@@ -1,5 +1,6 @@
 using Phoneword.Localization;
 using Phoneword.Views;
+using Phoneword.Views.Interfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,8 +19,11 @@ namespace Phoneword
             //LanguageResource.Culture = new System.Globalization.CultureInfo("pt-BR");
             #endregion
 
-            MainPage = new NavigationPage(new MainPage());
-           // MainPage = new NavigationPage(new DataTemplateAdvancedView());
+            AutofacConfig.ConfigureContainer();
+
+            var firstPage = AutofacConfig.GetPage<IMainPage, MainPage>();
+
+            MainPage = new NavigationPage(firstPage);
         }
 
         protected override void OnStart()

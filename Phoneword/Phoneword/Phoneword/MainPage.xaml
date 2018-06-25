@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    x:Class="Phoneword.MainPage"
-                                           >
+                   x:Name="Body"
+                     Title="{Binding TitleMainPage, Mode=TwoWay}" >
     <ContentPage.BackgroundColor>
         <OnPlatform x:TypeArguments="Color"
                   iOS="Green"
@@ -28,10 +29,14 @@
             </Label.TextColor>
         </Label>
 
-        <Entry x:Name="phoneNumberText" Text="Wagner Santos" TextColor="White" />
-        <Button x:Name="translateButon" Text="Translate" Clicked="OnTranslate" />
-        <Button x:Name="callButton" IsEnabled="false" Clicked="OnCall" />
-        <Button x:Name="callHistoryButton" Text="Call History" IsEnabled="True"  Clicked="OnCallHistory" />
-        <Button x:Name="helloMonsterButton" Text="Hello Monster" IsEnabled="True"  Clicked="OnHelooMonster" />
+        <Entry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" TextColor="White" Placeholder="Digite o texto" />
+        <Button x:Name="translateButon" Text="Translate" Command="{Binding TranslateCommand}"
+                BackgroundColor="{Binding ButtonColor}" />
+        <Button x:Name="callButton" IsEnabled="True" Text="{Binding CallButtonText, Mode=TwoWay}" Command="{Binding CallCommand}" 
+                BackgroundColor="Red" />
+        <Button x:Name="callHistoryButton" Text="Call History" IsEnabled="True"  Command="{Binding CallHistoryCommand}" 
+                BackgroundColor="{Binding ButtonColor}" />
+        <Button x:Name="helloMonsterButton" Text="Hello Monster" IsEnabled="True"  Command="{Binding ShowMonsterCommand}"  
+                BackgroundColor="{Binding ButtonColor}" />
     </StackLayout>
 </ContentPage>
