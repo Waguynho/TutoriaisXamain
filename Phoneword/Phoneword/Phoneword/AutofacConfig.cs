@@ -8,7 +8,7 @@ namespace Phoneword
 {
     public class AutofacConfig
     {
-
+        //TESTE B
         #region Fields
 
         private static IContainer _container;
