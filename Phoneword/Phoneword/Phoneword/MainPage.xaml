@@ -24,16 +24,17 @@
                 <OnPlatform x:TypeArguments="Color"
                   iOS="Green"
                   WinPhone="YellowGreen"
-                  Android="White"
+                  Android="White"                          
                  />
             </Label.TextColor>
         </Label>
 
-        <Entry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" TextColor="White" Placeholder="Digite o texto" />
+        <Entry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" TextColor="Purple" 
+                Placeholder="Digite o texto" />
         <Button x:Name="translateButon" Text="Translate" Command="{Binding TranslateCommand}"
                 BackgroundColor="{Binding ButtonColor}" />
-        <Button x:Name="callButton" IsEnabled="True" Text="{Binding CallButtonText, Mode=TwoWay}" Command="{Binding CallCommand}" 
-                BackgroundColor="Red" />
+        <Button x:Name="callButton" IsEnabled="{Binding CallEnable}" Text="{Binding CallButtonText, Mode=TwoWay}" Command="{Binding CallCommand}" 
+                BackgroundColor="{Binding ButtonColor}" />
         <Button x:Name="callHistoryButton" Text="Call History" IsEnabled="True"  Command="{Binding CallHistoryCommand}" 
                 BackgroundColor="{Binding ButtonColor}" />
         <Button x:Name="helloMonsterButton" Text="Hello Monster" IsEnabled="True"  Command="{Binding ShowMonsterCommand}"  

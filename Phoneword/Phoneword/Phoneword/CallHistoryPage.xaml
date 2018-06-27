@@ -11,6 +11,6 @@
         </OnPlatform>
     </ContentPage.Padding>
     <StackLayout>
-        <ListView ItemsSource="{x:Static local:MainPage.PhoneNumbers}" />
+        <ListView ItemsSource="{Binding Numbers, Mode=TwoWay}" />
     </StackLayout>
 </ContentPage>

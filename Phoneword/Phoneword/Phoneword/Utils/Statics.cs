@@ -6,7 +6,7 @@ namespace Phoneword.Utils
     {
         public static Color ButtonColor
         {
-            get { return Color.Black; }
+            get { return Color.Orange; }
         }
 
     }

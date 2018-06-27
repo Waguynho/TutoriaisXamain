@@ -3,6 +3,7 @@ using Phoneword.Utils;
 using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -10,7 +11,9 @@ namespace Phoneword.ViewModels
 {
     public class MainPageViewModel : ViewModelBase, IMainPageViewModel
     {
-        private string titleMainPage = "XXx";
+        public IList<string> Numbers { get; set; }
+
+        private string titleMainPage = "Título A";
 
         public string TitleMainPage
         {
@@ -18,6 +21,17 @@ namespace Phoneword.ViewModels
             set
             {
                 SetProperty(ref titleMainPage, value);
+            }
+        }
+
+        private bool callEnable = false;
+
+        public bool CallEnable
+        {
+            get { return callEnable; }
+            set
+            {
+                SetProperty(ref callEnable, value);
             }
         }
 
@@ -52,6 +66,7 @@ namespace Phoneword.ViewModels
         }
         public MainPageViewModel(IPageContext pageContext) : base(pageContext)
         {
+            Numbers = new List<string>();
             CallCommand = new Command(ExecuteCall);
             CallHistoryCommand = new Command(ExecuteCallHistory);
             TranslateCommand = new Command(ExecuteTranslate);
@@ -69,15 +84,15 @@ namespace Phoneword.ViewModels
                 var dialer = DependencyService.Get<IDialer>();
                 if (dialer != null)
                 {
-                    var result = dialer.Dial(MainPage.TranslatedNumber);
+                    var result = dialer.Dial(TranslatedNumber);
 
-                    if (string.IsNullOrEmpty(MainPage.TranslatedNumber) == false)
+                    if (string.IsNullOrEmpty(TranslatedNumber) == false)
                     {
-                        MainPage.PhoneNumbers.Add(MainPage.TranslatedNumber);
+                        Numbers.Add(TranslatedNumber);
                     }
                 }
 
-                TitleMainPage = (TitleMainPage != "XXx") ? "XXx" : "Título A";
+                TitleMainPage = (TitleMainPage != "Título A") ? "Título A" : "Título B";
             }
             catch (Exception ex)
             {
@@ -87,25 +102,29 @@ namespace Phoneword.ViewModels
 
         public ICommand CallHistoryCommand { get; set; }
 
+        public string teste(int x) {
+            return "Numbers";
+        }
+
         public void ExecuteCallHistory()
         {
-            this.PageContext.NavigateTo<ICallHistoryView, ICallHistoryViewModel>();
+            PageContext.NavigateTo<ICallHistoryView, ICallHistoryViewModel>(( ) => Numbers, Numbers );
         }
 
         public ICommand TranslateCommand { get; set; }
 
         public void ExecuteTranslate()
         {
-            MainPage.TranslatedNumber = Core.PhonewordTranslator.ToNumber(TranslatedNumber);
+            string translated = Core.PhonewordTranslator.ToNumber(TranslatedNumber);
 
             if (!string.IsNullOrWhiteSpace(TranslatedNumber))
             {
-                // callButton.IsEnabled = true;
-                CallButtonText = LanguageResource.call + " " + MainPage.TranslatedNumber;
+                CallEnable = true;
+                CallButtonText = LanguageResource.call + " " + translated;
             }
             else
             {
-                //callButton.IsEnabled = false;
+                CallEnable = false;
                 CallButtonText = LanguageResource.call;
             }
         }
