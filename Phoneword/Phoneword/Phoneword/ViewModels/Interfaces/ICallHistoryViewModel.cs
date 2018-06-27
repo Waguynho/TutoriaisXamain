@@ -2,7 +2,7 @@
 
 namespace Phoneword.ViewModels.Interfaces
 {
-    public interface ICallHistoryViewModel
+    public interface ICallHistoryViewModel: IViewModel
     {
         IList<string> Numbers { get; set; }
     }

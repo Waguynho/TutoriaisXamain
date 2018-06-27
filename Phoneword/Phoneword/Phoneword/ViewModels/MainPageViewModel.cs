@@ -11,7 +11,7 @@ namespace Phoneword.ViewModels
 {
     public class MainPageViewModel : ViewModelBase, IMainPageViewModel
     {
-        public IList<string> Numbers { get; set; }
+        public IList<string> PhoneNumbers { get; set; }
 
         private string titleMainPage = "Título A";
 
@@ -66,7 +66,7 @@ namespace Phoneword.ViewModels
         }
         public MainPageViewModel(IPageContext pageContext) : base(pageContext)
         {
-            Numbers = new List<string>();
+            PhoneNumbers = new List<string>();
             CallCommand = new Command(ExecuteCall);
             CallHistoryCommand = new Command(ExecuteCallHistory);
             TranslateCommand = new Command(ExecuteTranslate);
@@ -88,7 +88,7 @@ namespace Phoneword.ViewModels
 
                     if (string.IsNullOrEmpty(TranslatedNumber) == false)
                     {
-                        Numbers.Add(TranslatedNumber);
+                        PhoneNumbers.Add(TranslatedNumber);
                     }
                 }
 
@@ -102,13 +102,14 @@ namespace Phoneword.ViewModels
 
         public ICommand CallHistoryCommand { get; set; }
 
-        public string teste(int x) {
+        public string teste(int x)
+        {
             return "Numbers";
         }
 
         public void ExecuteCallHistory()
         {
-            PageContext.NavigateTo<ICallHistoryView, ICallHistoryViewModel>(( ) => Numbers, Numbers );
+            PageContext.NavigateTo<ICallHistoryView, ICallHistoryViewModel>(vm => vm.Numbers = this.PhoneNumbers);
         }
 
         public ICommand TranslateCommand { get; set; }

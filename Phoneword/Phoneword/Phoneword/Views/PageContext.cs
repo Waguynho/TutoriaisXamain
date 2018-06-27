@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System;
 using System.Linq;
@@ -84,23 +85,27 @@ namespace Phoneword.Views
         /// <param name="property">Proprieda</param>
         /// <param name="value">Valor</param>
         /// <returns></returns>
-        public async Task NavigateTo<TPage, TViewModel>(Expression<Func<object>> property, object value)
+        public  Task NavigateTo<TPage, TViewModel>(Action<TViewModel> actiionViewModel)
             where TPage : class, IPage
-            where TViewModel : class
+            where TViewModel : IViewModel
         {
             //Resolvendo dependências.
             var newPage = _componentContext.Resolve<TPage>();
-            var viewmodel = _componentContext.Resolve<TViewModel>();
+            var viewModel = _componentContext.Resolve<TViewModel>();
 
-            if (newPage != null && viewmodel != null)
+            //Preenchendo a ViewModel
+            actiionViewModel.Invoke((TViewModel)viewModel); 
+
+            if (newPage != null && viewModel != null)
             {
                 //Conectando a Nova View com a Viewmodel.
-                newPage.BindingContext = viewmodel;
-                //Definindo valor para uma propriedade da Viewmodel.
-                SetPropertyValue<TViewModel>(property.Body, viewmodel, value);
+                newPage.BindingContext = viewModel;
+                
+                //SetPropertyValue<TViewModel>(property.Body, viewmodel, value);
                 //Empilhando a página atual.
-                await ((Page)CurrentPage).Navigation.PushAsync(newPage as Page);
+                return ((Page)CurrentPage).Navigation.PushAsync(newPage as Page);
             }
+            return null;
         }
 
         /// <summary>

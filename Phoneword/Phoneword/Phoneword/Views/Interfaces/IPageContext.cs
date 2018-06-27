@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Phoneword.ViewModels.Interfaces;
+using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -29,12 +30,12 @@ namespace Phoneword.Views.Interfaces
         /// </summary>
         /// <typeparam name="TPage">Nova página</typeparam>
         /// <typeparam name="TViewModel">Viewmodel</typeparam>
-        /// <param name="property">Proprieda</param>
+        /// <param name="ViewModel">Proprieda</param>
         /// <param name="value">Valor</param>
         /// <returns></returns>
-        Task NavigateTo<TPage, TViewModel>(Expression<Func<object>> property, object value)
+        Task NavigateTo<TPage, TViewModel>(Action<TViewModel> ViewModel)
             where TPage : class, IPage
-            where TViewModel : class;
+            where TViewModel : IViewModel;
 
         /// <summary>
         /// Navega para uma TPage conectada a uma TViewModel.
