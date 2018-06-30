@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Phoneword.ViewModels
 {
-    public class ViewModelBase:   INotifyPropertyChanged, IViewModel
+    public class ViewModelBase : INotifyPropertyChanged, IViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -17,7 +17,7 @@ namespace Phoneword.ViewModels
             this.PageContext = PageContext;
         }
 
-        protected bool SetProperty<T>(ref T storage, T value,  [CallerMemberName] string propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (Object.Equals(storage, value))
                 return false;
@@ -27,9 +27,11 @@ namespace Phoneword.ViewModels
             return true;
         }
 
-        protected  void OnPropertyChanged( string propertyName = null)
+        protected void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public virtual void BeforeBinding(){}
     }
 }

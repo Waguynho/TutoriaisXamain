@@ -59,8 +59,8 @@ namespace Phoneword.Views
         /// <typeparam name="TViewModel">Viewmodel</typeparam>
         /// <returns></returns>
         public async Task NavigateTo<TPage, TViewModel>()
-            where TPage : class, IPage
-            where TViewModel : class
+          where TPage : class, IPage
+            where TViewModel : IViewModel
         {
             //Resolvendo dependências.
             var newPage = _componentContext.Resolve<TPage>();
@@ -68,8 +68,11 @@ namespace Phoneword.Views
 
             if (newPage != null && viewmodel != null)
             {
+                viewmodel.BeforeBinding();
+
                 //Conectando a Nova View com a Viewmodel.
                 newPage.BindingContext = viewmodel;
+
                 //Empilhando a página atual.
                 await ((Page)CurrentPage).Navigation.PushAsync(newPage as Page);
                 //await ((Page)CurrentPage).Navigation.
@@ -85,7 +88,7 @@ namespace Phoneword.Views
         /// <param name="property">Proprieda</param>
         /// <param name="value">Valor</param>
         /// <returns></returns>
-        public  Task NavigateTo<TPage, TViewModel>(Action<TViewModel> actiionViewModel)
+        public Task NavigateTo<TPage, TViewModel>(Action<TViewModel> actiionViewModel)
             where TPage : class, IPage
             where TViewModel : IViewModel
         {
@@ -94,13 +97,16 @@ namespace Phoneword.Views
             var viewModel = _componentContext.Resolve<TViewModel>();
 
             //Preenchendo a ViewModel
-            actiionViewModel.Invoke((TViewModel)viewModel); 
+            actiionViewModel.Invoke((TViewModel)viewModel);
 
             if (newPage != null && viewModel != null)
             {
+                viewModel.BeforeBinding();
+
                 //Conectando a Nova View com a Viewmodel.
                 newPage.BindingContext = viewModel;
-                
+
+
                 //SetPropertyValue<TViewModel>(property.Body, viewmodel, value);
                 //Empilhando a página atual.
                 return ((Page)CurrentPage).Navigation.PushAsync(newPage as Page);

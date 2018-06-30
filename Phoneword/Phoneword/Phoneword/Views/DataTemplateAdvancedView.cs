@@ -34,31 +34,39 @@ namespace Phoneword.Views
                 Children = { listView }
             };
         }
-
+        
         private DataTemplate GetDataTemplate()
         {
 
             return new DataTemplate(() =>
             {
-                var grid = new Grid();
+                StackLayout stackDataTemplate = new StackLayout
+                {
+                    Padding = 5,
+                    Orientation = StackOrientation.Horizontal,
+                    //BackgroundColor = Color.Pink,
+                    HorizontalOptions = LayoutOptions.FillAndExpand
+                };
 
                 var task = new Label { FontAttributes = FontAttributes.Bold };
                 var done = new Label();
 
                 task.SetBinding(Label.TextProperty, "Name");
                 task.TextColor = Color.White;
+                task.HorizontalOptions = LayoutOptions.Start;
 
                 done.SetBinding(Label.TextProperty, "Done");
+                done.HorizontalOptions = LayoutOptions.EndAndExpand;
 
                 var convertColor = new BoolToColorConverter();
-                string parametros = "Teste de parâmetros";
-                convertColor.Convert(this, typeof(Color), parametros, null);
+                convertColor.Convert(this, typeof(Color), null, null);
                 done.SetBinding(Label.TextColorProperty, new Binding("Done", BindingMode.TwoWay, convertColor));
 
-                grid.Children.Add(task, 0, 0);
-                grid.Children.Add(done, 1, 0);
 
-                return new ViewCell { View = grid };
+                stackDataTemplate.Children.Add(task);
+                stackDataTemplate.Children.Add(done);
+
+                return new ViewCell { View =  stackDataTemplate};
             });
         }
     }

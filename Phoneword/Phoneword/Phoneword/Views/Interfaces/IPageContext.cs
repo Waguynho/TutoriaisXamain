@@ -1,6 +1,5 @@
 ﻿using Phoneword.ViewModels.Interfaces;
 using System;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Phoneword.Views.Interfaces
@@ -20,8 +19,8 @@ namespace Phoneword.Views.Interfaces
         /// <typeparam name="TViewModel">Viewmodel</typeparam>
         /// <returns></returns>
         Task NavigateTo<TPage, TViewModel>()
-           where TPage : class, IPage
-           where TViewModel : class;
+        where TPage : class, IPage
+            where TViewModel : IViewModel;
 
         /// <summary>
         /// Navega para uma TPage conectada a uma TViewModel, fazendo uma injeção do valor para uma propriedade
@@ -76,6 +75,5 @@ namespace Phoneword.Views.Interfaces
         /// <param name="cancel">Texto exibido no botão de cancelar.</param>
         /// <returns></returns>
         Task<bool> ShowMessage(string title, string message, string accept, string cancel);
-
     }
 }
