@@ -27,7 +27,7 @@ namespace Phoneword.ViewModels
             return true;
         }
 
-        protected void OnPropertyChanged(string propertyName = null)
+        protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

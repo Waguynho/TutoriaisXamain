@@ -13,7 +13,28 @@ namespace Phoneword.ViewModels
             get { return toDoItems; }
             set { SetProperty(ref toDoItems, value); }
         }
-         
+
+        private TodoItem selectedItem;
+
+        public TodoItem SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                SetProperty(ref selectedItem, value);
+            }
+        }
+
+        private string headerList = "Nada selecionado...";
+
+        public string HeaderList
+        {
+            get { return headerList; }
+            set
+            {
+                SetProperty(ref headerList, value);
+            }
+        }
 
         public DataTemplateAdvancedViewModel(IPageContext context)
             : base(context)
@@ -23,6 +44,24 @@ namespace Phoneword.ViewModels
         public override void BeforeBinding()
         {
             LoadList();
+        }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (propertyName == nameof(SelectedItem))
+            {
+                OnSelectedIemChanged();
+            }
+        }
+
+        private void OnSelectedIemChanged()
+        {
+            if (SelectedItem != null)
+            {
+                HeaderList =  SelectedItem.Name;
+            }
         }
 
         private void LoadList()
@@ -38,7 +77,7 @@ namespace Phoneword.ViewModels
 
             for (int i = 0; i < 20; i++)
             {
-                this.ToDoItems.Add( new TodoItem { Name = "Comprar " + i, Done = true });
+                this.ToDoItems.Add(new TodoItem { Name = "Comprar " + i, Done = true });
             }
         }
     }
