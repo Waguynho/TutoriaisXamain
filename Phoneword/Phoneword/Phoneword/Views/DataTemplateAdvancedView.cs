@@ -1,12 +1,18 @@
 ﻿using Phoneword.Converters;
 using Phoneword.Localization;
+using Phoneword.Views.Interfaces;
 using Xamarin.Forms;
 
 namespace Phoneword.Views
 {
-    public class DataTemplateAdvancedView : ContentPage
+    public class DataTemplateAdvancedView : ContentPage, IDataTemplateAdvancedView
     {
         public DataTemplateAdvancedView()
+        {
+            CreateLayout();
+        }
+
+        private void CreateLayout()
         {
             Title = LanguageResource.task_list;
             BackgroundColor = Color.FromHex("#00001a");
@@ -15,13 +21,8 @@ namespace Phoneword.Views
             {
                 RowHeight = 40
             };
-            listView.ItemsSource = new TodoItem[] {
-                new TodoItem { Name = "Buy pears", Done = false },
-                new TodoItem { Name = "Buy oranges", Done= true} ,
-                new TodoItem { Name = "Buy mangos"  , Done = false },
-                new TodoItem { Name = "Buy apples", Done= true },
-                new TodoItem { Name = "Buy bananas", Done= true }
-            };
+
+            listView.SetBinding(ListView.ItemsSourceProperty, "ToDoItems", BindingMode.TwoWay);
 
             var dataTemplate = new DataTemplate();
 

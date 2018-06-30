@@ -6,7 +6,7 @@ namespace Phoneword.Views
     {
         public GridAdvancedView()
         {
-            Title = "Grids";
+            Title = "Grids AAA";
             CreateMainLayout();
         }
 
@@ -15,9 +15,9 @@ namespace Phoneword.Views
             Grid grid = new Grid
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                BackgroundColor = Color.WhiteSmoke,
+                BackgroundColor =            Color.Pink,
 
-                RowDefinitions =
+            RowDefinitions =
                 {
                     new RowDefinition { Height = GridLength.Auto },
                     new RowDefinition { Height = GridLength.Auto },

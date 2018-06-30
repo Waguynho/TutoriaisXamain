@@ -1,4 +1,5 @@
-﻿using Phoneword.Views;
+﻿using Phoneword.Utils;
+using Phoneword.Views;
 using Phoneword.Views.Interfaces;
 using Xamarin.Forms;
 
@@ -18,9 +19,9 @@ namespace Phoneword
             {
                 Text = "Grids",                
                 VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Center,
-
-                CornerRadius = 20,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Statics.ButtonColor,
+                CornerRadius = 25,
 
                 Command = new Command(async () => {
                     await Navigation.PushAsync(new GridAdvancedView());
@@ -31,19 +32,18 @@ namespace Phoneword
             {
                 Text = "DataTemplates",
                 VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Center,
-
-                BorderRadius = 20,
-
-                Command = new Command(async() => {
-
-                    await Navigation.PushAsync(new DataTemplateAdvancedView());
-                })
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Statics.ButtonColor,
+                CornerRadius = 25,                
             };
+
+            btnToDataTemplate.SetBinding(Button.CommandProperty, "DataTemplateCommand");
 
             StackLayout stackMain = new StackLayout
             {
-                VerticalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                //BackgroundColor = Color.Orange,
                 Orientation = StackOrientation.Vertical,
                 Children = { btnToGrid, btnToDataTemplate },
                 Padding = 5

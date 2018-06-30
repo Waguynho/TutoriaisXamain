@@ -52,6 +52,8 @@ namespace Phoneword
 
             builder.RegisterType<HelloMonsterView>().As<IHelloMonsterView>();
             builder.RegisterType<CallHistoryPage>().As<ICallHistoryView>();
+            builder.RegisterType<DataTemplateAdvancedView>().As<IDataTemplateAdvancedView>();
+            
             #endregion
 
             #region Viewmodels
@@ -59,6 +61,7 @@ namespace Phoneword
             builder.RegisterType<HelloMonsterViewModel>().As<IHelloMonsterViewModel>();
             builder.RegisterType<MainPageViewModel>().As<IMainPageViewModel>();
             builder.RegisterType<CallHistoryViewModel>().As<ICallHistoryViewModel>();
+            builder.RegisterType<DataTemplateAdvancedViewModel>().As<IDataTemplateAdvancedViewModel>();
             #endregion
 
             #region Page Context Register
