@@ -9,5 +9,9 @@ namespace Phoneword.Utils
             get { return Color.Orange; }
         }
 
+        public static Color PageBackGroudColor
+        {
+            get { return Color.FromHex("#00001a"); }
+        }
     }
 }

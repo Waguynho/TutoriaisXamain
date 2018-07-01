@@ -1,6 +1,9 @@
-﻿using Phoneword.ViewModels.Interfaces;
+﻿using Phoneword.Utils;
+using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System.Collections.ObjectModel;
+using System.Linq;
+using Xamarin.Forms;
 
 namespace Phoneword.ViewModels
 {
@@ -12,6 +15,14 @@ namespace Phoneword.ViewModels
         {
             get { return toDoItems; }
             set { SetProperty(ref toDoItems, value); }
+        }
+
+        private ObservableCollection<GroupT<bool, TodoItem>> groups;
+
+        public ObservableCollection<GroupT<bool, TodoItem>> Groups
+        {
+            get { return groups; }
+            set { SetProperty(ref groups, value); }
         }
 
         private TodoItem selectedItem;
@@ -35,6 +46,15 @@ namespace Phoneword.ViewModels
                 SetProperty(ref headerList, value);
             }
         }
+
+        private Color backGroundCell = Color.PapayaWhip;
+
+        public Color BackGroundCell
+        {
+            get { return backGroundCell; }
+            set { SetProperty(ref backGroundCell, value); }
+        }
+
 
         public DataTemplateAdvancedViewModel(IPageContext context)
             : base(context)
@@ -60,7 +80,8 @@ namespace Phoneword.ViewModels
         {
             if (SelectedItem != null)
             {
-                HeaderList =  SelectedItem.Name;
+                HeaderList = SelectedItem.Name;
+                BackGroundCell = Color.Pink;
             }
         }
 
@@ -71,14 +92,21 @@ namespace Phoneword.ViewModels
                 new TodoItem { Name = "Comprar pêras", Done = false },
                 new TodoItem { Name = "Comprar Laranjas", Done= true} ,
                 new TodoItem { Name = "Lavar o carro"  , Done = false },
-                new TodoItem { Name = "Retiar a mesa da garagem", Done= true },
+                new TodoItem { Name = "Retiar a mesa da garagem", Done= false },
                 new TodoItem { Name = "Arrumar a cama", Done= true }
             };
 
             for (int i = 0; i < 20; i++)
             {
-                this.ToDoItems.Add(new TodoItem { Name = "Comprar " + i, Done = true });
+                this.ToDoItems.Add(new TodoItem { Name = "Comprar " + i, Done = (i % 2 == 0) });
             }
+
+            var x = (from todo in ToDoItems
+                    orderby todo.Name
+                    group todo by todo.Done into g
+                    select new GroupT<bool, TodoItem>(g.Key, g)).ToList<GroupT<bool, TodoItem>>();
+
+            Groups = new ObservableCollection<GroupT<bool, TodoItem>>(x);
         }
     }
 }

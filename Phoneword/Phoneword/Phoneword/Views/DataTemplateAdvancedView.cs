@@ -1,5 +1,6 @@
 ﻿using Phoneword.Converters;
 using Phoneword.Localization;
+using Phoneword.Utils;
 using Phoneword.Views.Interfaces;
 using System;
 using Xamarin.Forms;
@@ -8,6 +9,8 @@ namespace Phoneword.Views
 {
     public class DataTemplateAdvancedView : ContentPage, IDataTemplateAdvancedView
     {
+        BoolToColorConverter convertColor = new BoolToColorConverter();
+
         public DataTemplateAdvancedView()
         {
             CreateLayout();
@@ -16,19 +19,21 @@ namespace Phoneword.Views
         private void CreateLayout()
         {
             Title = LanguageResource.task_list;
-            BackgroundColor = Color.FromHex("#00001a");
+            BackgroundColor = Statics.PageBackGroudColor;
 
             var listView = new ListView
             {
                 RowHeight = 40
             };
 
-            listView.SetBinding(ListView.ItemsSourceProperty, "ToDoItems", BindingMode.TwoWay);
+            listView.IsGroupingEnabled = true;
+            listView.ItemTemplate = GetDataTemplate();
+            listView.Footer = GetFooterTemplate();
+            listView.GroupHeaderTemplate = GetHeaderTemplate();
+
+            listView.SetBinding(ListView.ItemsSourceProperty, "Groups", BindingMode.OneWay);
             listView.SetBinding(ListView.SelectedItemProperty, "SelectedItem", BindingMode.TwoWay);
 
-            listView.ItemTemplate = GetDataTemplate();
-            listView.Header = GetHeaderTemplate();
-            listView.Footer = GetFooterTemplate();
 
             Content = new StackLayout
             {
@@ -48,6 +53,8 @@ namespace Phoneword.Views
                     HorizontalOptions = LayoutOptions.FillAndExpand
                 };
 
+                stackDataTemplate.SetBinding(StackLayout.BackgroundColorProperty, "BackGroundCell");
+
                 var task = new Label { FontAttributes = FontAttributes.Bold };
                 var done = new Label();
 
@@ -58,19 +65,23 @@ namespace Phoneword.Views
                 done.SetBinding(Label.TextProperty, "Done");
                 done.HorizontalOptions = LayoutOptions.EndAndExpand;
 
-                var convertColor = new BoolToColorConverter();
                 convertColor.Convert(this, typeof(Color), null, null);
                 done.SetBinding(Label.TextColorProperty, new Binding("Done", BindingMode.TwoWay, convertColor));
 
                 stackDataTemplate.Children.Add(task);
                 stackDataTemplate.Children.Add(done);
 
-                return new ViewCell { View =  stackDataTemplate};
+                var viewCell = new ViewCell { View = stackDataTemplate };
+                viewCell.SetBinding(View.BackgroundColorProperty, "BackGroundCell");
+                return viewCell;
             });
         }
 
-        private StackLayout GetHeaderTemplate()
+        private DataTemplate GetHeaderTemplate()
         {
+            return new DataTemplate(() =>
+            {
+
                 StackLayout stackHeaderTemplate = new StackLayout
                 {
                     Padding = 5,
@@ -78,17 +89,19 @@ namespace Phoneword.Views
                     BackgroundColor = Color.Orange,
                     HorizontalOptions = LayoutOptions.FillAndExpand
                 };
+                stackHeaderTemplate.BackgroundColor = Color.Purple;
 
-                var title = new Label { FontAttributes = FontAttributes.Bold };             
+                var title = new Label { FontAttributes = FontAttributes.Bold };
 
-                title.SetBinding(Label.TextProperty, "HeaderList");
+                title.SetBinding(Label.TextProperty, "KeyGroup");
                 title.TextColor = Color.Yellow;
-                title.HorizontalOptions = LayoutOptions.CenterAndExpand;    
+                title.HorizontalOptions = LayoutOptions.CenterAndExpand;
                 title.VerticalOptions = LayoutOptions.CenterAndExpand;
 
                 stackHeaderTemplate.Children.Add(title);
-
-                return stackHeaderTemplate ;            
+                var viewCell = new ViewCell { View = stackHeaderTemplate };
+                return viewCell;
+            });
         }
 
         private StackLayout GetFooterTemplate()
@@ -97,7 +110,7 @@ namespace Phoneword.Views
             {
                 Padding = 5,
                 Orientation = StackOrientation.Horizontal,
-                BackgroundColor = Color.Red,
+                BackgroundColor = Color.Black,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
 
