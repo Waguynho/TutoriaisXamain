@@ -3,13 +3,15 @@ using Phoneword.Localization;
 using Phoneword.Utils;
 using Phoneword.Views.Interfaces;
 using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace Phoneword.Views
 {
     public class DataTemplateAdvancedView : ContentPage, IDataTemplateAdvancedView
     {
-        BoolToColorConverter convertColor = new BoolToColorConverter();
+        readonly BoolColorConverter templateTextColor = new BoolColorConverter(Color.GreenYellow, Color.Red);
+        readonly BoolColorConverter headerTextColor = new BoolColorConverter(Color.Yellow, Color.White);
 
         public DataTemplateAdvancedView()
         {
@@ -28,12 +30,12 @@ namespace Phoneword.Views
 
             listView.IsGroupingEnabled = true;
             listView.ItemTemplate = GetDataTemplate();
-            listView.Footer = GetFooterTemplate();
             listView.GroupHeaderTemplate = GetHeaderTemplate();
+            listView.Footer = GetFooterTemplate();
+            listView.SeparatorColor = Color.White;
 
-            listView.SetBinding(ListView.ItemsSourceProperty, "Groups", BindingMode.OneWay);
+            listView.SetBinding(ListView.ItemsSourceProperty, "Groups", BindingMode.Default);
             listView.SetBinding(ListView.SelectedItemProperty, "SelectedItem", BindingMode.TwoWay);
-
 
             Content = new StackLayout
             {
@@ -41,7 +43,7 @@ namespace Phoneword.Views
                 Children = { listView }
             };
         }
-        
+
         private DataTemplate GetDataTemplate()
         {
             return new DataTemplate(() =>
@@ -64,15 +66,28 @@ namespace Phoneword.Views
 
                 done.SetBinding(Label.TextProperty, "Done");
                 done.HorizontalOptions = LayoutOptions.EndAndExpand;
-
-                convertColor.Convert(this, typeof(Color), null, null);
-                done.SetBinding(Label.TextColorProperty, new Binding("Done", BindingMode.TwoWay, convertColor));
+                done.SetBinding(Label.TextColorProperty, new Binding("Done", BindingMode.TwoWay, templateTextColor));
 
                 stackDataTemplate.Children.Add(task);
                 stackDataTemplate.Children.Add(done);
 
+                var moreAction = new MenuItem { Text = "More" };
+                moreAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
+
+                moreAction.Clicked += (sender, e) =>
+                {
+                    var mi = ((MenuItem)sender);
+                    Debug.WriteLine("More Context Action clicked: " + mi.CommandParameter);
+                };
+
+                MenuItem detailAction = new MenuItem { Text = "Detail" };
+                detailAction.SetBinding(MenuItem.CommandProperty, new Binding("DetailCommand", BindingMode.TwoWay, null, null, null, this.BindingContext));
+                detailAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
+
                 var viewCell = new ViewCell { View = stackDataTemplate };
-                viewCell.SetBinding(View.BackgroundColorProperty, "BackGroundCell");
+                viewCell.ContextActions.Add(moreAction);
+                viewCell.ContextActions.Add(detailAction);
+
                 return viewCell;
             });
         }
@@ -81,7 +96,6 @@ namespace Phoneword.Views
         {
             return new DataTemplate(() =>
             {
-
                 StackLayout stackHeaderTemplate = new StackLayout
                 {
                     Padding = 5,
@@ -93,6 +107,7 @@ namespace Phoneword.Views
 
                 var title = new Label { FontAttributes = FontAttributes.Bold };
 
+                title.SetBinding(Label.TextColorProperty, "KeyGroup", BindingMode.TwoWay, headerTextColor);
                 title.SetBinding(Label.TextProperty, "KeyGroup");
                 title.TextColor = Color.Yellow;
                 title.HorizontalOptions = LayoutOptions.CenterAndExpand;

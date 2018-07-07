@@ -3,6 +3,7 @@ using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Phoneword.ViewModels
@@ -59,12 +60,22 @@ namespace Phoneword.ViewModels
         public DataTemplateAdvancedViewModel(IPageContext context)
             : base(context)
         {
+
         }
+
+        private void ExecuteDetail(TodoItem todo)
+        {
+            PageContext.CurrentPage.DisplayAlert("", todo.Name, "Close");
+        }
+
+        public ICommand DetailCommand { get; set; }
 
         public override void BeforeBinding()
         {
             LoadList();
+            DetailCommand = new Command<TodoItem>((item) => ExecuteDetail(item));
         }
+
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
@@ -101,12 +112,9 @@ namespace Phoneword.ViewModels
                 this.ToDoItems.Add(new TodoItem { Name = "Comprar " + i, Done = (i % 2 == 0) });
             }
 
-            var x = (from todo in ToDoItems
-                    orderby todo.Name
-                    group todo by todo.Done into g
-                    select new GroupT<bool, TodoItem>(g.Key, g)).ToList<GroupT<bool, TodoItem>>();
+            var todosGrouped = ToDoItems.GroupBy(g => g.Done).Select(p => new GroupT<bool, TodoItem>(p.Key, p)).ToList();
 
-            Groups = new ObservableCollection<GroupT<bool, TodoItem>>(x);
+            Groups = new ObservableCollection<GroupT<bool, TodoItem>>(todosGrouped);
         }
     }
 }
