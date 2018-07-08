@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+
 namespace Phoneword.ViewModels
 {
     public class DataTemplateAdvancedViewModel : ViewModelBase, IDataTemplateAdvancedViewModel

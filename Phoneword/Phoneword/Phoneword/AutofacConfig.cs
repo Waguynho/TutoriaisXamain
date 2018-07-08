@@ -8,7 +8,6 @@ namespace Phoneword
 {
     public class AutofacConfig
     {
-        //TESTE A
         #region Fields
 
         private static IContainer _container;
@@ -53,7 +52,8 @@ namespace Phoneword
             builder.RegisterType<HelloMonsterView>().As<IHelloMonsterView>();
             builder.RegisterType<CallHistoryPage>().As<ICallHistoryView>();
             builder.RegisterType<DataTemplateAdvancedView>().As<IDataTemplateAdvancedView>();
-            
+            builder.RegisterType<FileView>().As<IFileView>();
+
             #endregion
 
             #region Viewmodels
@@ -62,6 +62,8 @@ namespace Phoneword
             builder.RegisterType<MainPageViewModel>().As<IMainPageViewModel>();
             builder.RegisterType<CallHistoryViewModel>().As<ICallHistoryViewModel>();
             builder.RegisterType<DataTemplateAdvancedViewModel>().As<IDataTemplateAdvancedViewModel>();
+            builder.RegisterType<FileViewModel>().As<IFileViewModel>();
+            
             #endregion
 
             #region Page Context Register

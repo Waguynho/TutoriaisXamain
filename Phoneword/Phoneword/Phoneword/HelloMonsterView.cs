@@ -39,13 +39,24 @@ namespace Phoneword
 
             btnToDataTemplate.SetBinding(Button.CommandProperty, "DataTemplateCommand");
 
+            Button btnFileAccess = new Button
+            {
+                Text = "File Access",
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Statics.ButtonColor,
+                CornerRadius = 25,
+            };
+
+            btnFileAccess.SetBinding(Button.CommandProperty, "FileAccessCommand");
+
             StackLayout stackMain = new StackLayout
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 //BackgroundColor = Color.Orange,
                 Orientation = StackOrientation.Vertical,
-                Children = { btnToGrid, btnToDataTemplate },
+                Children = { btnToGrid, btnToDataTemplate, btnFileAccess },
                 Padding = 5
             };
 
