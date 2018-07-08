@@ -10,6 +10,7 @@ namespace Phoneword.Views
 {
     public class DataTemplateAdvancedView : ContentPage, IDataTemplateAdvancedView
     {
+        readonly BoolAnyConverter<string> templateText = new BoolAnyConverter<string>("Feito", "Em aberto");
         readonly BoolColorConverter templateTextColor = new BoolColorConverter(Color.GreenYellow, Color.Red);
         readonly BoolColorConverter headerTextColor = new BoolColorConverter(Color.Yellow, Color.White);
 
@@ -64,7 +65,7 @@ namespace Phoneword.Views
                 task.TextColor = Color.White;
                 task.HorizontalOptions = LayoutOptions.Start;
 
-                done.SetBinding(Label.TextProperty, "Done");
+                done.SetBinding(Label.TextProperty, new Binding("Done", BindingMode.TwoWay, templateText));
                 done.HorizontalOptions = LayoutOptions.EndAndExpand;
                 done.SetBinding(Label.TextColorProperty, new Binding("Done", BindingMode.TwoWay, templateTextColor));
 
@@ -107,8 +108,8 @@ namespace Phoneword.Views
 
                 var title = new Label { FontAttributes = FontAttributes.Bold };
 
+                title.SetBinding(Label.TextProperty, new Binding("KeyGroup", BindingMode.Default, templateText));
                 title.SetBinding(Label.TextColorProperty, "KeyGroup", BindingMode.TwoWay, headerTextColor);
-                title.SetBinding(Label.TextProperty, "KeyGroup");
                 title.TextColor = Color.Yellow;
                 title.HorizontalOptions = LayoutOptions.CenterAndExpand;
                 title.VerticalOptions = LayoutOptions.CenterAndExpand;
