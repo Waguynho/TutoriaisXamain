@@ -13,5 +13,15 @@ namespace Phoneword.Utils
         {
             get { return Color.FromHex("#00001a"); }
         }
+
+        public static Color EntryBackGroudColor
+        {
+            get { return Color.White; }
+        }
+
+        public static Color EntryTextColor
+        {
+            get { return Color.Black; }
+        }
     }
 }

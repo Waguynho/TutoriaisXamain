@@ -1,11 +1,7 @@
-﻿using Android.App;
-using Android.Content;
-using Android.Telephony;
-using Phoneword.Droid;
-using System.Linq;
-using Android.Content;
-using Xamarin.Forms;
+﻿using Android.Content;
 using Android.Widget;
+using Phoneword.Droid;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(PhoneDialer))]
 namespace Phoneword.Droid

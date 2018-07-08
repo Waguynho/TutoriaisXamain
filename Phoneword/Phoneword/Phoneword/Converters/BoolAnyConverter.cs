@@ -6,8 +6,8 @@ namespace Phoneword.Converters
 {
     public class BoolAnyConverter<KTypeReturn> : IValueConverter
     {
-        private KTypeReturn positiveCase;
-        private KTypeReturn negativeCase;
+        private readonly KTypeReturn positiveCase;
+        private readonly KTypeReturn negativeCase;
 
         public BoolAnyConverter(KTypeReturn positiveCase, KTypeReturn negativeCase)
         {

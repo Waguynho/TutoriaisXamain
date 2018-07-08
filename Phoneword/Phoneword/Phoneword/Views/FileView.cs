@@ -1,4 +1,4 @@
-﻿using Phoneword.Utils;
+﻿using Phoneword.Styles;
 using Phoneword.Views.Interfaces;
 using Xamarin.Forms;
 
@@ -33,27 +33,20 @@ namespace Phoneword.Views
             pathLabelValue.SetBinding(Label.TextProperty, "AppPath", BindingMode.OneWay);
 
             Entry input = new Entry();
-            input.BackgroundColor = Color.White;
-            input.TextColor = Color.Black;
+            input.Style = StylesEntry.EntryDefault;
             input.SetBinding(Entry.TextProperty, "TextInput", BindingMode.TwoWay);
 
             Button btnWriteFile = new Button
             {
                 Text = "Write in File",
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.EndAndExpand,
-                BackgroundColor = Statics.ButtonColor,
-                CornerRadius = 25,
+                Style = StylesButton.ButtonDefault
             };
             btnWriteFile.SetBinding(Button.CommandProperty, "WriteFileCommand");
 
             Button btnReadFile = new Button
             {
                 Text = "Read File",
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.StartAndExpand,
-                BackgroundColor = Statics.ButtonColor,
-                CornerRadius = 25,
+                Style = StylesButton.ButtonDefault
             };
             btnReadFile.SetBinding(Button.CommandProperty, "ReadFileCommand");
 

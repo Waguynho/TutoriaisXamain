@@ -1,9 +1,8 @@
-﻿using Phoneword.Utils;
-using Phoneword.Views;
+﻿using Phoneword.Styles;
 using Phoneword.Views.Interfaces;
 using Xamarin.Forms;
 
-namespace Phoneword
+namespace Phoneword.Views
 {
     public class HelloMonsterView : ContentPage, IHelloMonsterView
     {
@@ -17,11 +16,8 @@ namespace Phoneword
         {
             Button btnToGrid = new Button
             {
-                Text = "Grids",                
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                BackgroundColor = Statics.ButtonColor,
-                CornerRadius = 25,
+                Text = "Grids",
+                Style = StylesButton.ButtonDefault,
 
                 Command = new Command(async () => {
                     await Navigation.PushAsync(new GridAdvancedView());
@@ -31,10 +27,7 @@ namespace Phoneword
             Button btnToDataTemplate = new Button
             {
                 Text = "DataTemplates",
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                BackgroundColor = Statics.ButtonColor,
-                CornerRadius = 25,                
+                Style = StylesButton.ButtonDefault
             };
 
             btnToDataTemplate.SetBinding(Button.CommandProperty, "DataTemplateCommand");
@@ -42,19 +35,15 @@ namespace Phoneword
             Button btnFileAccess = new Button
             {
                 Text = "File Access",
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                BackgroundColor = Statics.ButtonColor,
-                CornerRadius = 25,
+                Style = StylesButton.ButtonDefault
             };
 
             btnFileAccess.SetBinding(Button.CommandProperty, "FileAccessCommand");
-
+            
             StackLayout stackMain = new StackLayout
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                //BackgroundColor = Color.Orange,
                 Orientation = StackOrientation.Vertical,
                 Children = { btnToGrid, btnToDataTemplate, btnFileAccess },
                 Padding = 5

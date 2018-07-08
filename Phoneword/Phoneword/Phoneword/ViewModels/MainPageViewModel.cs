@@ -102,7 +102,7 @@ namespace Phoneword.ViewModels
 
         public ICommand CallHistoryCommand { get; set; }
 
-        public string teste(int x)
+        public string Teste(int x)
         {
             return "Numbers";
         }
