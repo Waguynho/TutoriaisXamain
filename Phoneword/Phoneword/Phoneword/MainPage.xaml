@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:local="clr-namespace:Phoneword.Styles" 
                    x:Class="Phoneword.MainPage"
                    x:Name="Body"
-                     Title="{Binding TitleMainPage, Mode=TwoWay}" >
+                   Title="{Binding TitleMainPage, Mode=OneWay}" >
     <ContentPage.BackgroundColor>
         <OnPlatform x:TypeArguments="Color"
                   iOS="Green"
-                  WinPhone="Gray"
-                 />
+                  WinPhone="Gray"/>
     </ContentPage.BackgroundColor>
 
     <ContentPage.Padding>
@@ -17,7 +17,7 @@
             <On Platform="Android, UWP" Value="20" />
         </OnPlatform>
     </ContentPage.Padding>
-    
+
     <StackLayout>
         <Label Text="Enter a Phoneword:" >
             <Label.TextColor>
@@ -29,15 +29,16 @@
             </Label.TextColor>
         </Label>
 
-        <Entry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" TextColor="Purple" 
-                Placeholder="Digite o texto" />
+        <Entry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" Placeholder="Digite o texto" 
+               Style="{x:Static local:StylesEntry.EntryDefault}" />
         <Button x:Name="translateButon" Text="Translate" Command="{Binding TranslateCommand}"
-                BackgroundColor="{Binding ButtonColor}" />
+                Style="{x:Static local:StylesButton.ButtonDefault}" />
         <Button x:Name="callButton" IsEnabled="{Binding CallEnable}" Text="{Binding CallButtonText, Mode=TwoWay}" Command="{Binding CallCommand}" 
-                BackgroundColor="{Binding ButtonColor}" />
+                Style="{x:Static local:StylesButton.ButtonDefault}" />
         <Button x:Name="callHistoryButton" Text="Call History" IsEnabled="True"  Command="{Binding CallHistoryCommand}" 
-                BackgroundColor="{Binding ButtonColor}" />
+                Style="{x:Static local:StylesButton.ButtonDefault}" />
         <Button x:Name="helloMonsterButton" Text="Hello Monster" IsEnabled="True"  Command="{Binding ShowMonsterCommand}"  
-                BackgroundColor="{Binding ButtonColor}" />
+                Style="{x:Static local:StylesButton.ButtonDefault}" />
+
     </StackLayout>
 </ContentPage>
