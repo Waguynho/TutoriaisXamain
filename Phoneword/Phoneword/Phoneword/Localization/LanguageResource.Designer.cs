@@ -61,7 +61,7 @@ namespace Phoneword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Call.
+        ///   Looks up a localized string similar to To Call….
         /// </summary>
         public static string call {
             get {
@@ -70,7 +70,7 @@ namespace Phoneword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Task List-.
+        ///   Looks up a localized string similar to --- Task List ---.
         /// </summary>
         public static string task_list {
             get {

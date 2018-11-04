@@ -99,9 +99,9 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
   <data name="task_list" xml:space="preserve">
-    <value>-Lista de Tarefas-</value>
-  </data>
+		<value>--- lista de tarefas ---</value>
+	</data>
   <data name="call" xml:space="preserve">
-    <value>Chamar...</value>
-  </data>
+		<value>Discar…</value>
+	</data>
 </root>

@@ -15,6 +15,8 @@ namespace Phoneword.ViewModels
 
         public ICommand DataTemplateCommand { private set; get; }
         public ICommand FileAccessCommand { private set; get; }
+        public ICommand WebInterfaceCommand { private set; get; }
+        public ICommand LoginCommand { private set; get; }
 
         public void ExecuteDataTemplate()
         {
@@ -40,10 +42,36 @@ namespace Phoneword.ViewModels
             }
         }
 
+        public void ExecuteWebInterface()
+        {
+            try
+            {
+                PageContext.NavigateTo<IWebInterfaceView, IWebInterfaceViewModel>();
+            }
+            catch (Exception ex)
+            {
+                PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
+            }
+        }
+
+        public void ExecuteLogin()
+        {
+            try
+            {
+                PageContext.NavigateTo<ILoginView, ILoginViewModel>();
+            }
+            catch (Exception ex)
+            {
+                PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
+            }
+        }
+
         public override void BeforeBinding()
         {
             DataTemplateCommand = new Command(ExecuteDataTemplate);
-            FileAccessCommand = new Command(ExecuteFileAccess);
+            FileAccessCommand = new Command(ExecuteFileAccess); 
+            WebInterfaceCommand = new Command(ExecuteWebInterface);
+            LoginCommand = new Command(ExecuteLogin);
         }
     }
 }

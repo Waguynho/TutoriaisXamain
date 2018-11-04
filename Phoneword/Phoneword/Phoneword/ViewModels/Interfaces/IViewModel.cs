@@ -3,5 +3,6 @@
     public interface IViewModel
     {
         void BeforeBinding();
+        void AfterBinding();
     }
 }

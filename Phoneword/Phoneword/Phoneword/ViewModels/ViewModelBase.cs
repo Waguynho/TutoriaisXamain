@@ -33,5 +33,6 @@ namespace Phoneword.ViewModels
         }
 
         public virtual void BeforeBinding(){}
+        public virtual void AfterBinding(){ }
     }
 }

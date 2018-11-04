@@ -39,13 +39,29 @@ namespace Phoneword.Views
             };
 
             btnFileAccess.SetBinding(Button.CommandProperty, "FileAccessCommand");
-            
+
+            Button btnWebInterface = new Button
+            {
+                Text = "Web View",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnWebInterface.SetBinding(Button.CommandProperty, "WebInterfaceCommand");
+
+            Button btnLogin = new Button
+            {
+                Text = "Login View",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnLogin.SetBinding(Button.CommandProperty, "LoginCommand");
+
             StackLayout stackMain = new StackLayout
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
-                Children = { btnToGrid, btnToDataTemplate, btnFileAccess },
+                Children = { btnToGrid, btnToDataTemplate, btnFileAccess, btnWebInterface, btnLogin },
                 Padding = 5
             };
 

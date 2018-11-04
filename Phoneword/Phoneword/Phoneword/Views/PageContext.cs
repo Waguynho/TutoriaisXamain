@@ -62,16 +62,22 @@ namespace Phoneword.Views
           where TPage : class, IPage
             where TViewModel : IViewModel
         {
-            //Resolvendo dependências.
-            var newPage = _componentContext.Resolve<TPage>();
-            var viewmodel = _componentContext.Resolve<TViewModel>();
+            
+            var viewmodel = _componentContext.Resolve<TViewModel>();            
 
-            if (newPage != null && viewmodel != null)
+            if ( viewmodel != null)
             {
                 viewmodel.BeforeBinding();
 
-                //Conectando a Nova View com a Viewmodel.
-                newPage.BindingContext = viewmodel;
+                var newPage = _componentContext.Resolve<TPage>();
+
+                if (newPage != null )
+                {                   
+                    //Conectando a Nova View com a Viewmodel.
+                    newPage.BindingContext = viewmodel;
+                }
+
+                viewmodel.AfterBinding();
 
                 //Empilhando a página atual.
                 await ((Page)CurrentPage).Navigation.PushAsync(newPage as Page);
