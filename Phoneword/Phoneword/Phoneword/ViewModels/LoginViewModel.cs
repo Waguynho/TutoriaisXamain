@@ -48,13 +48,12 @@ namespace Phoneword.ViewModels
 
         public override void BeforeBinding()
         {
-            setBehaviorsEntry();
             base.BeforeBinding();
         }
         public override void AfterBinding()
         {
             base.AfterBinding();
-       
+            setBehaviorsEntry();
         }
         private void setBehaviorsEntry()
         {
@@ -64,6 +63,7 @@ namespace Phoneword.ViewModels
         private void LoginAction()
         {
             if (PassWord.Equals("123") && Login.ToLower().Equals("ws"))
+
             {
                 PageContext.ShowMessage("Aviso", "Logado com sucesso", "cancelar");
             }

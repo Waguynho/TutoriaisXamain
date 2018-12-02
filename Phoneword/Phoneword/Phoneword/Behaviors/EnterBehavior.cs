@@ -8,10 +8,15 @@ namespace Phoneword.Behaviors
     {
 
 
-        private ICommand EnterCommand
+        public ICommand EnterCommand
         {
-            get => (ICommand)GetValue(EnterCommandProperty);
-            set => SetValue(EnterCommandProperty, value);
+            get {
+
+                return (ICommand)GetValue(EnterCommandProperty);
+            }
+            set {
+                SetValue(EnterCommandProperty, value);
+            }
         }
 
         protected override void OnAttachedTo(Entry entry)
@@ -63,7 +68,7 @@ namespace Phoneword.Behaviors
            propertyName: nameof(EnterCommand),
            returnType: typeof(ICommand),
            declaringType: typeof(EnterBehavior),
-           defaultValue: null,
+           defaultValue: new Command(() => {}),
            defaultBindingMode: BindingMode.TwoWay,
            propertyChanged: OnEnterChanged
            );

@@ -9,8 +9,15 @@ namespace Phoneword.Views
     {
         public LoginView()
         {
+            
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
             CreateLayout();
         }
+
         private void CreateLayout()
         {
 
@@ -40,6 +47,7 @@ namespace Phoneword.Views
 
 
             var enterBehavior = new EnterBehavior();
+            enterBehavior.BindingContext = this.BindingContext;
             enterBehavior.SetBinding(EnterBehavior.EnterCommandProperty , "OnReturnPassWord", BindingMode.TwoWay);
             passWordInput.Behaviors.Add(enterBehavior);
 
