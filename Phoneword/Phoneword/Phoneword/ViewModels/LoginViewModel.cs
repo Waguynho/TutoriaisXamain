@@ -1,6 +1,5 @@
 ﻿using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
-using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -8,16 +7,25 @@ namespace Phoneword.ViewModels
 {
     public class LoginViewModel : ViewModelBase, ILoginViewModel
     {
-        private ICommand onReturnPassWord;
+        private ICommand onReturnColor;
 
-        public ICommand OnReturnPassWord
+        public ICommand OnReturnColor
         {
-            get { return onReturnPassWord; }
+            get { return onReturnColor; }
             set
             {
+                SetProperty(ref onReturnColor, value);
+            }
+        }
 
-                SetProperty(ref onReturnPassWord, value);
+        private ICommand onReturnToken;
 
+        public ICommand OnReturnToken
+        {
+            get { return onReturnToken; }
+            set
+            {
+                SetProperty(ref onReturnToken, value);
             }
         }
 
@@ -40,7 +48,15 @@ namespace Phoneword.ViewModels
                 SetProperty(ref passWord, value);
             }
         }
-
+        private Color colorFont;
+        public Color ColorFont
+        {
+            get { return colorFont; }
+            set
+            {
+                SetProperty(ref colorFont, value);
+            }
+        }
         public LoginViewModel(IPageContext context) : base(context)
         {
 
@@ -55,24 +71,41 @@ namespace Phoneword.ViewModels
             base.AfterBinding();
             setBehaviorsEntry();
         }
+        private bool IsLoginSuccess()
+        {
+            return PassWord.Equals("123") && Login.ToLower().Equals("ws");
+        }
         private void setBehaviorsEntry()
         {
-            OnReturnPassWord = new Command(LoginAction);
+            OnReturnColor = new Command(ChangeColor);
+            OnReturnToken = new Command(ShowToken);
         }
 
-        private void LoginAction()
+        private void ChangeColor()
         {
-            if (PassWord.Equals("123") && Login.ToLower().Equals("ws"))
+            if (IsLoginSuccess())
 
+            {
+                ColorFont = Color.Green;
+            }
+            else
+            {
+                ColorFont = Color.Red;
+            }
+        }
+
+        private void ShowToken()
+        {
+            if (IsLoginSuccess())
             {
                 PageContext.ShowMessage("Aviso", "Logado com sucesso", "cancelar");
             }
             else
             {
                 PageContext.ShowMessage("Erro", "Credenciais incorretas", "cancelar");
-
             }
         }
+
 
         protected override void OnPropertyChanged(string propertyName)
         {
@@ -80,9 +113,8 @@ namespace Phoneword.ViewModels
 
             switch (propertyName)
             {
-                case nameof(OnReturnPassWord):
+                case nameof(OnReturnColor):
 
-                    //OnReturnPassWord.Execute(null);
                     break;
             }
         }

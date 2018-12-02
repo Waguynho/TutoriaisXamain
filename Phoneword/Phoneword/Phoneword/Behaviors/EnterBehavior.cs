@@ -6,8 +6,6 @@ namespace Phoneword.Behaviors
 {
     public class EnterBehavior : Behavior<Entry>
     {
-
-
         public ICommand EnterCommand
         {
             get {
@@ -22,9 +20,6 @@ namespace Phoneword.Behaviors
         protected override void OnAttachedTo(Entry entry)
         {
             entry.Completed += RerurnPressed;
-            entry.Unfocused += OnUnfocused;
-            entry.ChildAdded += RerurnPressed;
-            entry.Focused += Onfocused;
             base.OnAttachedTo(entry);
         }
 
@@ -41,9 +36,6 @@ namespace Phoneword.Behaviors
         protected override void OnDetachingFrom(Entry entry)
         {
             entry.Completed -= RerurnPressed;
-            entry.Unfocused -= OnUnfocused;
-            entry.ChildAdded -= RerurnPressed;
-            entry.Focused -= Onfocused;
             base.OnDetachingFrom(entry);
         }
 
@@ -59,20 +51,16 @@ namespace Phoneword.Behaviors
                 EnterCommand.Execute(null);
             }
         }
-        static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var x = bindable;
-        }
+
         #region Bindable Properties
         public static readonly BindableProperty EnterCommandProperty = BindableProperty.Create(
            propertyName: nameof(EnterCommand),
            returnType: typeof(ICommand),
            declaringType: typeof(EnterBehavior),
-           defaultValue: new Command(() => {}),
+           defaultValue: null,
            defaultBindingMode: BindingMode.TwoWay,
            propertyChanged: OnEnterChanged
            );
-
 
         private static void OnEnterChanged(BindableObject bindable, object oldValue, object newValue)
         {
