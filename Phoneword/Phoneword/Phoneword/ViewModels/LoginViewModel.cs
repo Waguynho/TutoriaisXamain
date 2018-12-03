@@ -1,4 +1,5 @@
-﻿using Phoneword.ViewModels.Interfaces;
+﻿using Phoneword.Utils;
+using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -48,7 +49,7 @@ namespace Phoneword.ViewModels
                 SetProperty(ref passWord, value);
             }
         }
-        private Color colorFont;
+        private Color colorFont = Color.Pink;
         public Color ColorFont
         {
             get { return colorFont; }
@@ -94,29 +95,23 @@ namespace Phoneword.ViewModels
             }
         }
 
-        private void ShowToken()
+        private async void ShowToken()
         {
-            if (IsLoginSuccess())
+            try
             {
-                PageContext.ShowMessage("Aviso", "Logado com sucesso", "cancelar");
+                HttpRest httpRest = new HttpRest();
+
+                var result = await httpRest.MakePostRequest(Login, PassWord);
+
+                await PageContext.ShowMessage("Aviso", result, "cancelar");
             }
-            else
+            catch (System.Exception ex)
             {
-                PageContext.ShowMessage("Erro", "Credenciais incorretas", "cancelar");
+
+                await PageContext.ShowMessage("ERRO", ex.Message + " " + ex.InnerException, "cancelar");
             }
-        }
 
-
-        protected override void OnPropertyChanged(string propertyName)
-        {
-            base.OnPropertyChanged(propertyName); 
-
-            switch (propertyName)
-            {
-                case nameof(OnReturnColor):
-
-                    break;
-            }
         }
     }
 }
+

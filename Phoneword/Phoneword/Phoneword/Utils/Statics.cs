@@ -23,5 +23,10 @@ namespace Phoneword.Utils
         {
             get { return Color.Black; }
         }
+
+        public static string BaseUriBackEnd
+        {
+            get { return "http://node1.wscompany.com.br/api"; }
+        }
     }
 }

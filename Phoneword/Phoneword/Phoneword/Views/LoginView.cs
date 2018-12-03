@@ -55,6 +55,8 @@ namespace Phoneword.Views
                 Style = StylesButton.ButtonDefault
             };
 
+            btnEnter.SetBinding(Button.CommandProperty, "OnReturnToken");
+
             StackLayout statckView = new StackLayout
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
