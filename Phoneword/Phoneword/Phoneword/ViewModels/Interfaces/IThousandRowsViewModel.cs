@@ -1,6 +1,6 @@
 ﻿namespace Phoneword.ViewModels.Interfaces
 {
-    public interface IHelloMonsterViewModel : IViewModel 
+    public interface IThousandRowsViewModel : IViewModel 
     {
     }
 }

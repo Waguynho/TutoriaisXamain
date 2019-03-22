@@ -55,7 +55,8 @@ namespace Phoneword
             builder.RegisterType<WebInterfaceView>().As<IWebInterfaceView>();
             builder.RegisterType<FileView>().As<IFileView>();
             builder.RegisterType<LoginView>().As<ILoginView>();
-
+            builder.RegisterType<ThousandRowsView>().As<IThousandRowsView>();
+            
             #endregion
 
             #region Viewmodels
@@ -67,6 +68,8 @@ namespace Phoneword
             builder.RegisterType<FileViewModel>().As<IFileViewModel>();
             builder.RegisterType<WebInterfaceViewModel>().As<IWebInterfaceViewModel>();
             builder.RegisterType<LoginViewModel>().As<ILoginViewModel>();
+            builder.RegisterType<ThousandRowsViewModel>().As<IThousandRowsViewModel>();
+            
 
 
             #endregion

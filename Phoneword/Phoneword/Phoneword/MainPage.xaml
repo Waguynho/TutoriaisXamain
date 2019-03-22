@@ -44,6 +44,8 @@
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
         <Button x:Name="helloMonsterButton" Text="Hello Monster" IsEnabled="True"  Command="{Binding ShowMonsterCommand}"  
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
+        <Button x:Name="ThousandRowButton" Text="Mil Linhas" IsEnabled="True"  Command="{Binding ShowThownsandRowsCommand}"  
+                Style="{x:Static local:StylesButton.ButtonDefault}" />
 
     </StackLayout>
 </ContentPage>

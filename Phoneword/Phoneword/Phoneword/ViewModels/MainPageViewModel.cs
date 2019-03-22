@@ -71,6 +71,7 @@ namespace Phoneword.ViewModels
             CallHistoryCommand = new Command(ExecuteCallHistory);
             TranslateCommand = new Command(ExecuteTranslate);
             ShowMonsterCommand = new Command(ExecuteShowMonster);
+            ShowThownsandRowsCommand = new Command(ExecuteShowThownsandRows);
             TranslatedNumber = "Digite um texto";
             CallButtonText = LanguageResource.call;
         }
@@ -135,6 +136,13 @@ namespace Phoneword.ViewModels
         public void ExecuteShowMonster()
         {
             this.PageContext.NavigateTo<IHelloMonsterView, IHelloMonsterViewModel>();
+        }
+
+        public ICommand ShowThownsandRowsCommand { get; set; }
+
+        public void ExecuteShowThownsandRows()
+        {
+            this.PageContext.NavigateTo<IThousandRowsView, IThousandRowsViewModel>();
         }
     }
 }

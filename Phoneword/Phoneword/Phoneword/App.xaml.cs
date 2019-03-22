@@ -28,7 +28,11 @@ namespace Phoneword
 
         protected override void OnStart()
         {
-            
+            var msg = "";
+            for (int i = 0; i < 1000; i++)
+            {
+                msg += "?? \n";
+            }
             // Handle when your app starts
         }
 
