@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="color_a">#ff8533</color>
-  <color name="color_b">#00001a</color>
+  <color name="dark_blue">#00001a</color>
   <color name="color_c">#ffffcc</color>
-  <color name="color_d">#ffffff</color>
+  <color name="verde_claro">#4dff4d</color>  
+  <color name="cinza_mediano">#666699</color>  
+  <color name="cinza_claro">#f0f0f5</color>  
+  <color name="laranja_claro">#ffa366</color> 
+  <color name="branco">#ffffff</color>
+  <color name="pink">#ff4dd2</color> 
 </resources>

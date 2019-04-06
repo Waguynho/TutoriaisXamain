@@ -2,23 +2,30 @@
 <resources>
   <!-- Base theme applied no matter what API -->
   <style name="MyCustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
 
     <item name="windowNoTitle">true</item>
-    <!--We will be using the toolbar so no need to show ActionBar-->
     <item name="windowActionBar">false</item>
-    
-    <!-- colorPrimary is used for the default action bar background -->
-    <item name="android:colorPrimary">@color/color_a</item>
-    <item name="android:windowBackground">@color/color_b</item>
-    <item name="android:colorAccent">@color/color_c</item>
-    <item name="android:textColorPrimary">@color/color_d</item>
-
-    
     <item name="windowActionModeOverlay">true</item>
-    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+
+
+    <item name="android:colorPrimary">@color/dark_blue</item>
+    <item name="android:windowBackground">@color/cinza_mediano</item>
+    <item name="android:textColorPrimary">@color/branco</item>
+    <item name="android:textColorSecondary">@color/laranja_claro</item>
+    <item name="android:textColorTertiary">@color/dark_blue</item>
+
+
+    <!--<item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>-->
   </style>
 
-  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent">#FF4081</item>
+  <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog">
+
+    <!-- Used for the buttons -->
+    <item name="colorAccent">@color/dark_blue</item>
+    <!-- Used for the title and text -->
+    <item name="android:textColorPrimary">@color/dark_blue</item>
+    <!-- Used for the background -->
+    <item name="android:background">@color/cinza_claro</item>
   </style>
 </resources>

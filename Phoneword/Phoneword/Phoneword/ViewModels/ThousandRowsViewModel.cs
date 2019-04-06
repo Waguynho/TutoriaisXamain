@@ -1,8 +1,6 @@
 ﻿using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -13,9 +11,7 @@ namespace Phoneword.ViewModels
         public ThousandRowsViewModel(IPageContext context) : base(context)
         {
             RepeatCommand = new Command(Repeat);
-
         }
-
 
 
         private int limitRepetition;
@@ -65,11 +61,11 @@ namespace Phoneword.ViewModels
         {
             if (IsExpiredLicense())
             {
-                bool confirm = await PageContext.ShowMessage("Aviso!", "Sua licença expirou, Deseja saber como renova-la?", "Sim", "Não");
+                bool confirm = await PageContext.ShowMessage("Aviso!", "Licensa expirada, deseja renova-la?", "Sim", "Não");
 
                 if (confirm)
                 {
-                    await PageContext.ShowMessage("...", "Mande fotos de todos os tipos para o programador e ganhe uma nova licença.", "OK");
+                    await PageContext.ShowMessage("...", "Faça uma vídeo chamada!", "OK");
                 }
             }
             else
@@ -108,7 +104,7 @@ namespace Phoneword.ViewModels
 
         private bool IsExpiredLicense()
         {
-            DateTime limiteDate = new DateTime(2019, 04, 1, 15, 30, 59);
+            DateTime limiteDate = new DateTime(2019, 06, 1, 15, 30, 59);
 
             if (DateTime.Now > limiteDate)
             {
@@ -120,7 +116,20 @@ namespace Phoneword.ViewModels
 
         private void ShowSecretSentence()
         {
-            PageContext.ShowMessage("Aviso", "Paula Maria é Linda!", "verdade");
+            PageContext.ShowMessage("Aviso", "Minha Rainda!", "verdade");
+        }
+
+        private void SetDefualValues()
+        {
+            LimitRepetition = 30;
+            CopyText = "paula maria";
+        }
+
+        public override void AfterBinding()
+        {
+            base.AfterBinding();
+
+            //SetDefualValues();
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Phoneword.Views
 
             Entry loginInput = new Entry();
             loginInput.Style = StylesEntry.EntryDefault;
+            loginInput.FlowDirection = FlowDirection.RightToLeft;
             loginInput.SetBinding(Entry.TextProperty, "Login", BindingMode.TwoWay);
 
             Label passWord = new Label();

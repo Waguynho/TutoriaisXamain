@@ -9,7 +9,7 @@ namespace Phoneword
 {
     public partial class App : Application
     {
-       
+
         public App()
         {
             InitializeComponent();
@@ -21,9 +21,14 @@ namespace Phoneword
 
             AutofacConfig.ConfigureContainer();
 
-            var firstPage = AutofacConfig.GetPage<IMainPage, MainPage>();
+            MainPage firstPage = AutofacConfig.GetPage<IMainPage, MainPage>();
 
-            MainPage = new NavigationPage(firstPage);
+            var navigationPage = new NavigationPage(firstPage);
+            navigationPage.BarBackgroundColor = Color.FromHex("#c2c2d6");
+            navigationPage.FlowDirection = FlowDirection.MatchParent;
+            navigationPage.BarTextColor = Color.White;
+
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()

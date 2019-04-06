@@ -10,6 +10,7 @@ namespace Phoneword.Views
         {
             base.OnBindingContextChanged();
             CreateLayout();
+            Title = "Repetidor";
         }
 
         private void CreateLayout()
@@ -17,11 +18,10 @@ namespace Phoneword.Views
             Label adviceLabel = new Label();
             adviceLabel.TextColor = Color.White;
             adviceLabel.Text = "Quantidade (Repetições)";
-            //subTitle.SetBinding(Label.TextProperty, "PassWord", BindingMode.TwoWay);
             adviceLabel.FontAttributes = FontAttributes.Bold;
 
             Slider sliderQuantity = new Slider();
-            sliderQuantity.Maximum = 4000;
+            sliderQuantity.Maximum = 5000;
             sliderQuantity.SetBinding(Slider.ValueProperty, "LimitRepetition", BindingMode.OneWayToSource);
 
 
@@ -34,7 +34,7 @@ namespace Phoneword.Views
             textInput.BackgroundColor = Color.White;
             textInput.TextColor = Color.Black;
             textInput.Placeholder = "Digite aqui...";
-            textInput.SetBinding(Entry.TextProperty, "CopyText", BindingMode.OneWayToSource);
+            textInput.SetBinding(Entry.TextProperty, "CopyText", BindingMode.TwoWay);
 
 
             Button repeatButton = new Button();
