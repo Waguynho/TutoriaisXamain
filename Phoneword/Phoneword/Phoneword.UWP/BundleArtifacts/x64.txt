@@ -1,0 +1,2 @@
+MainPackage=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\bin\x64\Release\Phoneword.UWP_1.0.2.0_x64.appx
+SymbolPackage=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\AppPackages\Phoneword.UWP_1.0.2.0_Test\Phoneword.UWP_1.0.2.0_x64.appxsym

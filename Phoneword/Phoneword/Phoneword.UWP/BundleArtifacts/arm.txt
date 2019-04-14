@@ -1,0 +1,7 @@
+MainPackage=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\bin\ARM\Release\Phoneword.UWP_1.0.2.0_ARM.appx
+SymbolPackage=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\AppPackages\Phoneword.UWP_1.0.2.0_Test\Phoneword.UWP_1.0.2.0_ARM.appxsym
+ResourcePack=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\bin\ARM\Release\Phoneword.UWP_1.0.2.0_language-pt.appx
+ResourcePack=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\bin\ARM\Release\Phoneword.UWP_1.0.2.0_scale-100.appx
+ResourcePack=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\bin\ARM\Release\Phoneword.UWP_1.0.2.0_scale-125.appx
+ResourcePack=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\bin\ARM\Release\Phoneword.UWP_1.0.2.0_scale-150.appx
+ResourcePack=A:\Git-Repositories\Phoneword\Phoneword\Phoneword.UWP\bin\ARM\Release\Phoneword.UWP_1.0.2.0_scale-400.appx
