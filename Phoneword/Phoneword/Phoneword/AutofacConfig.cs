@@ -12,7 +12,7 @@ namespace Phoneword
 
         private static IContainer _container;
 
-        public static IContainer Buider { get { return _container; }  }
+        public static IContainer Buider { get { return _container; } }
 
         #endregion
 
@@ -43,20 +43,22 @@ namespace Phoneword
         {
             var builder = new ContainerBuilder();
 
+            //PageContext for Main Page, wich will propagate
+            builder.Register((c, p) => new PageContext(c.Resolve<IComponentContext>(), c.Resolve<IMainPage>()))
+                .As<IPageContext>()
+                .SingleInstance();
+
             #region Views
 
-            //Main Page Register
-            builder.Register(c => new MainPage()).As<IMainPage>()
-                .OnActivated(e => e.Instance.BindingContext = e.Context.Resolve<IMainPageViewModel>());
-
             builder.RegisterType<HelloMonsterView>().As<IHelloMonsterView>();
+            builder.RegisterType<MainPage>().As<IMainPage>();
             builder.RegisterType<CallHistoryPage>().As<ICallHistoryView>();
             builder.RegisterType<DataTemplateAdvancedView>().As<IDataTemplateAdvancedView>();
             builder.RegisterType<WebInterfaceView>().As<IWebInterfaceView>();
             builder.RegisterType<FileView>().As<IFileView>();
             builder.RegisterType<LoginView>().As<ILoginView>();
             builder.RegisterType<ThousandRowsView>().As<IThousandRowsView>();
-            
+
             #endregion
 
             #region Viewmodels
@@ -69,20 +71,29 @@ namespace Phoneword
             builder.RegisterType<WebInterfaceViewModel>().As<IWebInterfaceViewModel>();
             builder.RegisterType<LoginViewModel>().As<ILoginViewModel>();
             builder.RegisterType<ThousandRowsViewModel>().As<IThousandRowsViewModel>();
-            
 
 
             #endregion
 
-            #region Page Context Register
-            //PageContext for Main Page, wich will propagate
-            builder.Register((c, p) => new PageContext(c.Resolve<IComponentContext>(), c.Resolve<IMainPage>()))
-                .As<IPageContext>()
-                .SingleInstance();
+
+            //Main Page Register
+            builder.Register(c => new MainPage()).As<IMainPage>()
+            .OnActivated(e => e.Instance.BindingContext = _container.Resolve<IMainPageViewModel>());
+
+            #region Page Context Register 
+
+
             #endregion
+
+
 
             _container = builder.Build();
         }
+
+        public static TService  RESOLVER<TService>()
+        {
+            return _container.Resolve<TService>();
+    }
 
         #endregion
     }

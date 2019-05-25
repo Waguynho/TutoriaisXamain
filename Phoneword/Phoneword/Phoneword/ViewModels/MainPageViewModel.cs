@@ -11,7 +11,19 @@ namespace Phoneword.ViewModels
 {
     public class MainPageViewModel : ViewModelBase, IMainPageViewModel
     {
-        public IList<string> PhoneNumbers { get; set; }
+        public MainPageViewModel(IPageContext pageContext) : base(pageContext)
+        {
+            PhoneNumbers = new List<string>();
+            CallCommand = new Command(ExecuteCall);
+            CallHistoryCommand = new Command(ExecuteCallHistory);
+            TranslateCommand = new Command(ExecuteTranslate);
+            ShowMonsterCommand = new Command(ExecuteShowMonster);
+            ShowThownsandRowsCommand = new Command(ExecuteShowThownsandRows);
+            TranslatedNumber = "Digite um texto";
+            CallButtonText = LanguageResource.call;
+        }
+
+        private IList<string> PhoneNumbers { get; set; }
 
         private string titleMainPage = "Título A";
 
@@ -64,17 +76,7 @@ namespace Phoneword.ViewModels
                 return Statics.ButtonColor;
             }
         }
-        public MainPageViewModel(IPageContext pageContext) : base(pageContext)
-        {
-            PhoneNumbers = new List<string>();
-            CallCommand = new Command(ExecuteCall);
-            CallHistoryCommand = new Command(ExecuteCallHistory);
-            TranslateCommand = new Command(ExecuteTranslate);
-            ShowMonsterCommand = new Command(ExecuteShowMonster);
-            ShowThownsandRowsCommand = new Command(ExecuteShowThownsandRows);
-            TranslatedNumber = "Digite um texto";
-            CallButtonText = LanguageResource.call;
-        }
+
 
         public ICommand CallCommand { private set; get; }
 

@@ -1,6 +1,8 @@
 using Phoneword.Localization;
+using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views;
 using Phoneword.Views.Interfaces;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,6 +11,7 @@ namespace Phoneword
 {
     public partial class App : Application
     {
+        private string msgErro;
 
         public App()
         {
@@ -19,16 +22,24 @@ namespace Phoneword
             //LanguageResource.Culture = new System.Globalization.CultureInfo("pt-BR");
             #endregion
 
-            AutofacConfig.ConfigureContainer();
+            InitializeMainPage();
+        }
 
-            MainPage firstPage = AutofacConfig.GetPage<IMainPage, MainPage>();
+        private void InitializeMainPage()
+        {
+      
+                AutofacConfig.ConfigureContainer();
 
-            var navigationPage = new NavigationPage(firstPage);
-            navigationPage.BarBackgroundColor = Color.FromHex("#c2c2d6");
-            navigationPage.FlowDirection = FlowDirection.MatchParent;
-            navigationPage.BarTextColor = Color.White;
+                MainPage firstPage = AutofacConfig.GetPage<IMainPage, MainPage>();
 
-            MainPage = navigationPage;
+                var navigationPage = new NavigationPage((Page)firstPage);
+                navigationPage.BarBackgroundColor = Color.FromHex("#c2c2d6");
+                navigationPage.BarTextColor = Color.White;
+
+                MainPage = navigationPage;
+            
+  
+
         }
 
         protected override void OnStart()
