@@ -1,4 +1,5 @@
 ﻿using Phoneword.Behaviors;
+using Phoneword.Controls;
 using Phoneword.Styles;
 using Phoneword.Views.Interfaces;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace Phoneword.Views
             login.TextColor = Color.White;
             login.FontAttributes = FontAttributes.Bold;
 
-            Entry loginInput = new Entry();
+            WEntry loginInput = new WEntry();
             loginInput.Style = StylesEntry.EntryDefault;
-            loginInput.FlowDirection = FlowDirection.RightToLeft;
+            loginInput.InvertedFlow = true;
             loginInput.SetBinding(Entry.TextProperty, "Login", BindingMode.TwoWay);
 
             Label passWord = new Label();

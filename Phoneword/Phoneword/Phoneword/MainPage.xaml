@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:local="clr-namespace:Phoneword.Styles"
-                   x:Class="Phoneword.MainPage"
+             xmlns:controls="clr-namespace:Phoneword.Controls"
+             x:Class="Phoneword.MainPage"
                    x:Name="Body"
                    Title="{Binding TitleMainPage, Mode=OneWay}" >
     <ContentPage.BackgroundColor>
@@ -26,9 +27,9 @@
             </Label.TextColor>
         </Label>
 
-        <Entry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" Placeholder="Digite o texto" 
-               Style="{x:Static local:StylesEntry.EntryDefault}" >        
-        </Entry>
+        <controls:WEntry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" Placeholder="Digite o texto" 
+               Style="{x:Static local:StylesEntry.EntryDefault}" InvertedFlow="True" >        
+        </controls:WEntry>
         <Button x:Name="translateButon" Text="Translate" Command="{Binding TranslateCommand}"
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
         <Button x:Name="callButton" IsEnabled="{Binding CallEnable}" Text="{Binding CallButtonText, Mode=TwoWay}" Command="{Binding CallCommand}" 

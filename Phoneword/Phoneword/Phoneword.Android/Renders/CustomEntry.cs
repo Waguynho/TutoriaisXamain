@@ -1,14 +1,15 @@
 ﻿using Android.Content;
 using Android.Views;
+using Phoneword.Controls;
 using Phoneword.Droid.Renders;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntry))]
+[assembly: ExportRenderer(typeof(WEntry), typeof(WEntryRender))]
 namespace Phoneword.Droid.Renders
 {
-    class CustomEntry : EntryRenderer
+    class WEntryRender : EntryRenderer
     {
-        public CustomEntry(Context context) : base(context)
+        public WEntryRender(Context context) : base(context)
         {
         }
 
@@ -18,12 +19,17 @@ namespace Phoneword.Droid.Renders
 
             if (Control != null && e.NewElement != null)
             {
-                Control.SetBackgroundColor(global::Android.Graphics.Color.LightGreen);
-                Control.TextDirection = TextDirection.AnyRtl;
-                Control.LayoutDirection = LayoutDirection.Rtl;
-                
-
+                SetInvertedFlow((WEntry)e.NewElement);
             }
+        }
+
+        private void SetInvertedFlow(WEntry wEntry)
+        {
+            if (wEntry.InvertedFlow)
+            {
+                Control.LayoutDirection = LayoutDirection.Rtl;
+                Control.TextDirection = TextDirection.Rtl;
+            }        
         }
     }
 }

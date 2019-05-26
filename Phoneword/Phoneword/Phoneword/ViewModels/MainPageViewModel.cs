@@ -19,7 +19,6 @@ namespace Phoneword.ViewModels
             TranslateCommand = new Command(ExecuteTranslate);
             ShowMonsterCommand = new Command(ExecuteShowMonster);
             ShowThownsandRowsCommand = new Command(ExecuteShowThownsandRows);
-            TranslatedNumber = "Digite um texto";
             CallButtonText = LanguageResource.call;
         }
 
