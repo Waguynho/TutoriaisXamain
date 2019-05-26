@@ -6,40 +6,42 @@
              x:Class="Phoneword.MainPage"
                    x:Name="Body"
                    Title="{Binding TitleMainPage, Mode=OneWay}" >
-    <ContentPage.BackgroundColor>
-        <OnPlatform x:TypeArguments="Color"
+    <ScrollView>
+        <ContentPage.BackgroundColor>
+            <OnPlatform x:TypeArguments="Color"
                   iOS="Green"/>
-    </ContentPage.BackgroundColor>
+        </ContentPage.BackgroundColor>
 
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness">
-            <On Platform="iOS" Value="20, 40, 20, 20" />
-        </OnPlatform>
-    </ContentPage.Padding>
+        <ContentPage.Padding>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="iOS" Value="20, 40, 20, 20" />
+            </OnPlatform>
+        </ContentPage.Padding>
 
-    <StackLayout>
-        <Label Text="Enter a Phoneword:" >
-            <Label.TextColor>
-                <OnPlatform x:TypeArguments="Color"
+        <StackLayout>
+            <Label Text="Enter a Phoneword:" >
+                <Label.TextColor>
+                    <OnPlatform x:TypeArguments="Color"
                   iOS="Green"
                   Android="White"                          
                  />
-            </Label.TextColor>
-        </Label>
+                </Label.TextColor>
+            </Label>
 
-        <controls:WEntry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" Placeholder="Digite o texto" 
-               Style="{x:Static local:StylesEntry.EntryDefault}" InvertedFlow="True" >        
-        </controls:WEntry>
-        <Button x:Name="translateButon" Text="Translate" Command="{Binding TranslateCommand}"
+            <controls:WEntry x:Name="phoneNumberText" Text="{Binding TranslatedNumber, Mode=TwoWay}" Placeholder="Digite o texto" 
+               Style="{x:Static local:StylesEntry.EntryDefault}" InvertedFlow="True" >
+            </controls:WEntry>
+            <Button x:Name="translateButon" Text="Translate" Command="{Binding TranslateCommand}"
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
-        <Button x:Name="callButton" IsEnabled="{Binding CallEnable}" Text="{Binding CallButtonText, Mode=TwoWay}" Command="{Binding CallCommand}" 
+            <Button x:Name="callButton" IsEnabled="{Binding CallEnable}" Text="{Binding CallButtonText, Mode=TwoWay}" Command="{Binding CallCommand}" 
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
-        <Button x:Name="callHistoryButton" Text="Call History" IsEnabled="True"  Command="{Binding CallHistoryCommand}" 
+            <Button x:Name="callHistoryButton" Text="Call History" IsEnabled="True"  Command="{Binding CallHistoryCommand}" 
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
-        <Button x:Name="helloMonsterButton" Text="Hello Monster" IsEnabled="True"  Command="{Binding ShowMonsterCommand}"  
+            <Button x:Name="helloMonsterButton" Text="Hello Monster" IsEnabled="True"  Command="{Binding ShowMonsterCommand}"  
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
-        <Button x:Name="ThousandRowButton" Text="Mil Linhas" IsEnabled="True"  Command="{Binding ShowThownsandRowsCommand}"  
+            <Button x:Name="ThousandRowButton" Text="Mil Linhas" IsEnabled="True"  Command="{Binding ShowThownsandRowsCommand}"  
                 Style="{x:Static local:StylesButton.ButtonDefault}" />
 
-    </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

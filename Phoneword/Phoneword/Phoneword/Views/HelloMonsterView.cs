@@ -19,7 +19,8 @@ namespace Phoneword.Views
                 Text = "Grids",
                 Style = StylesButton.ButtonDefault,
 
-                Command = new Command(async () => {
+                Command = new Command(async () =>
+                {
                     await Navigation.PushAsync(new GridAdvancedView());
                 })
             };
@@ -65,7 +66,19 @@ namespace Phoneword.Views
                 Padding = 5
             };
 
-            Content = stackMain;
+            ScrollView scroll = ConfigureScroolView(stackMain);
+
+            Content = scroll;
+        }
+
+        private  ScrollView ConfigureScroolView(Layout stackMain)
+        {
+            ScrollView scroll = new ScrollView();
+            scroll.Orientation = ScrollOrientation.Vertical;
+            scroll.Content = stackMain;
+            scroll.Padding = new Thickness(5, 10);
+
+            return scroll;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Phoneword.Controls;
 using Phoneword.Localization;
 using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views;
@@ -27,19 +28,15 @@ namespace Phoneword
 
         private void InitializeMainPage()
         {
-      
-                AutofacConfig.ConfigureContainer();
 
-                MainPage firstPage = AutofacConfig.GetPage<IMainPage, MainPage>();
+            AutofacConfig.ConfigureContainer();
+            MainPage firstPage = AutofacConfig.GetPage<IMainPage, MainPage>();
 
-                var navigationPage = new NavigationPage((Page)firstPage);
-                navigationPage.BarBackgroundColor = Color.FromHex("#c2c2d6");
-                navigationPage.BarTextColor = Color.White;
+            WNavigationPage navigationPage = new WNavigationPage((Page)firstPage);
+            navigationPage.BarBackgroundColor = Color.FromHex("#c2c2d6");
+            navigationPage.BarTextColor = Color.White;
 
-                MainPage = navigationPage;
-            
-  
-
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()

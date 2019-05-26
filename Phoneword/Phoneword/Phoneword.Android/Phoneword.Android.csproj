@@ -31,7 +31,7 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
-    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
@@ -75,7 +75,7 @@
     <Compile Include="DependencyService\BaseUrlAsset.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PhoneDialer.cs" />
-    <Compile Include="Renders\CustomEntry.cs" />
+    <Compile Include="Renders\WEntryRender.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
