@@ -104,7 +104,7 @@ namespace Phoneword.ViewModels
 
         private bool IsExpiredLicense()
         {
-            DateTime limiteDate = new DateTime(2019, 06, 1, 15, 30, 59);
+            DateTime limiteDate = new DateTime(2019, 08, 15, 15, 30, 59);
 
             if (DateTime.Now > limiteDate)
             {
