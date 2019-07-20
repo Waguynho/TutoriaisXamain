@@ -55,14 +55,20 @@ namespace Phoneword.Views
                 Style = StylesButton.ButtonDefault
             };
 
-            btnLogin.SetBinding(Button.CommandProperty, "LoginCommand");
+            Button btnBarCode = new Button
+            {
+                Text = "Bar Code",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnBarCode.SetBinding(Button.CommandProperty, "BarCodeCommand");            
 
             StackLayout stackMain = new StackLayout
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
-                Children = { btnToGrid, btnToDataTemplate, btnFileAccess, btnWebInterface, btnLogin },
+                Children = { btnToGrid, btnToDataTemplate, btnFileAccess, btnWebInterface, btnLogin, btnBarCode },
                 Padding = 5
             };
 

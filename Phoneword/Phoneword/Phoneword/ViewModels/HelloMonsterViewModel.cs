@@ -8,7 +8,7 @@ namespace Phoneword.ViewModels
 {
     public class HelloMonsterViewModel : ViewModelBase, IHelloMonsterViewModel
     {
-        public HelloMonsterViewModel(IPageContext context): base(context)
+        public HelloMonsterViewModel(IPageContext context) : base(context)
         {
 
         }
@@ -17,6 +17,7 @@ namespace Phoneword.ViewModels
         public ICommand FileAccessCommand { private set; get; }
         public ICommand WebInterfaceCommand { private set; get; }
         public ICommand LoginCommand { private set; get; }
+        public ICommand BarCodeCommand { private set; get; }
 
         public void ExecuteDataTemplate()
         {
@@ -54,6 +55,34 @@ namespace Phoneword.ViewModels
             }
         }
 
+        public async void ExecuteBarCode()
+        {
+            try
+            {
+
+                await PageContext.NavigateTo<IBarCodeReaderView, IBarCodeReaderViewModel>(
+                    vm =>
+               {
+                   {
+                       vm.ResultCallBack = Teste;
+                   }
+               }
+                );
+            }
+            catch (Exception ex)
+            {
+                PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
+            }
+        }
+
+        public void Teste(string result)
+        {
+            Device.BeginInvokeOnMainThread(() => {
+                PageContext.CurrentPage.DisplayAlert("Leitura...", result, "OK");
+            });
+         
+        }
+
         public void ExecuteLogin()
         {
             try
@@ -72,6 +101,7 @@ namespace Phoneword.ViewModels
             FileAccessCommand = new Command(ExecuteFileAccess); 
             WebInterfaceCommand = new Command(ExecuteWebInterface);
             LoginCommand = new Command(ExecuteLogin);
+            BarCodeCommand = new Command(ExecuteBarCode);
         }
     }
 }
