@@ -63,12 +63,20 @@ namespace Phoneword.Views
 
             btnBarCode.SetBinding(Button.CommandProperty, "BarCodeCommand");            
 
+            Button btnProgress = new Button
+            {
+                Text = "Studens Progress",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnProgress.SetBinding(Button.CommandProperty, "StudentsCommand");
+
             StackLayout stackMain = new StackLayout
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
-                Children = { btnToGrid, btnToDataTemplate, btnFileAccess, btnWebInterface, btnLogin, btnBarCode },
+                Children = { btnToGrid, btnToDataTemplate, btnFileAccess, btnWebInterface, btnLogin, btnBarCode, btnProgress },
                 Padding = 5
             };
 

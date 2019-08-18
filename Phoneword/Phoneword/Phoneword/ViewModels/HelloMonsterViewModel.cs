@@ -1,4 +1,5 @@
-﻿using Phoneword.ViewModels.Interfaces;
+﻿using Phoneword.Controls;
+using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System;
 using System.Windows.Input;
@@ -18,6 +19,7 @@ namespace Phoneword.ViewModels
         public ICommand WebInterfaceCommand { private set; get; }
         public ICommand LoginCommand { private set; get; }
         public ICommand BarCodeCommand { private set; get; }
+        public ICommand StudentsCommand { private set; get; }
 
         public void ExecuteDataTemplate()
         {
@@ -59,7 +61,6 @@ namespace Phoneword.ViewModels
         {
             try
             {
-
                 await PageContext.NavigateTo<IBarCodeReaderView, IBarCodeReaderViewModel>(
                     vm =>
                {
@@ -71,7 +72,19 @@ namespace Phoneword.ViewModels
             }
             catch (Exception ex)
             {
-                PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
+               await PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
+            }
+        }
+
+        public async void CreateStudents()
+        {
+            try
+            {
+                await PageContext.NavigateTo<IStudentsView, IStudentsViewModel>();
+            }
+            catch (Exception ex)
+            {
+                await PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
             }
         }
 
@@ -102,6 +115,7 @@ namespace Phoneword.ViewModels
             WebInterfaceCommand = new Command(ExecuteWebInterface);
             LoginCommand = new Command(ExecuteLogin);
             BarCodeCommand = new Command(ExecuteBarCode);
+            StudentsCommand = new Command(CreateStudents);
         }
     }
 }

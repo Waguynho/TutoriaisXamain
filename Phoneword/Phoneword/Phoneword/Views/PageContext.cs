@@ -94,7 +94,7 @@ namespace Phoneword.Views
         /// <param name="property">Proprieda</param>
         /// <param name="value">Valor</param>
         /// <returns></returns>
-        public Task NavigateTo<TPage, TViewModel>(Action<TViewModel> actiionViewModel)
+        public Task NavigateTo<TPage, TViewModel>(Action<TViewModel> actionViewModel)
             where TPage : class, IPage
             where TViewModel : IViewModel
         {
@@ -103,7 +103,7 @@ namespace Phoneword.Views
             var viewModel = _componentContext.Resolve<TViewModel>();
 
             //Preenchendo a ViewModel
-            actiionViewModel.Invoke((TViewModel)viewModel);
+            actionViewModel.Invoke((TViewModel)viewModel);
 
             if (newPage != null && viewModel != null)
             {

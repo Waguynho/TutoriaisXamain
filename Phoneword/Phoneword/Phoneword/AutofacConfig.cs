@@ -59,6 +59,7 @@ namespace Phoneword
             builder.RegisterType<LoginView>().As<ILoginView>();
             builder.RegisterType<ThousandRowsView>().As<IThousandRowsView>();
             builder.RegisterType<BarCodeReaderView>().As<IBarCodeReaderView>();
+            builder.RegisterType<StudentsView>().As<IStudentsView>();
 
             #endregion
 
@@ -73,6 +74,7 @@ namespace Phoneword
             builder.RegisterType<LoginViewModel>().As<ILoginViewModel>();
             builder.RegisterType<ThousandRowsViewModel>().As<IThousandRowsViewModel>();
             builder.RegisterType<BarCodeReaderViewModel>().As<IBarCodeReaderViewModel>();
+            builder.RegisterType<StudentsViewModel>().As<IStudentsViewModel>();
 
             #endregion
 
