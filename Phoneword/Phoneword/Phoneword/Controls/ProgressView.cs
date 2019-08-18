@@ -29,7 +29,7 @@ namespace Phoneword.Controls
         {
             double decimalPercentage = currentlyValue / totalToProcess;
             SetMenssagePercentage(decimalPercentage);
-            return await progressBar.ProgressTo(decimalPercentage, 100, Easing.Linear);
+            return await progressBar.ProgressTo(decimalPercentage, 150, Easing.Linear);
         }
 
         private void SetMenssagePercentage(double decimalPercentage)
@@ -81,35 +81,6 @@ namespace Phoneword.Controls
             base.OnAppearing();
 
             LoadProgressBar();
-        }
-
-        private void ProgressBar_PropertyChanging(object sender, PropertyChangingEventArgs e)
-        {
-
-            if (e.PropertyName == "Progress")
-            {
-                var progressBar = (ProgressBar)sender;
-
-            }
-
-        }
-
-        private void ProgressBar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Progress")
-            {
-                var progressBar = (ProgressBar)sender;
-                if (progressBar.Progress == 1)
-                {
-                    labelMenssage.IsVisible = true;
-                    labelMenssage.Text = successMenssage;
-                }
-                else
-                {
-                    labelMenssage.Text = string.Format("{0}%", (progressBar.Progress * 100));
-                }
-
-            }
         }
 
         private void LoadProgressBar()

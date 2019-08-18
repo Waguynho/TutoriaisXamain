@@ -25,16 +25,25 @@ namespace Phoneword.Views
 
             btnAddStudents.SetBinding(Button.CommandProperty, "CreateStudentesCommand");
 
+            Button btnDeleteStudents = new Button
+            {
+                Text = "Delete Students",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnDeleteStudents.SetBinding(Button.CommandProperty, "DeleteStudentesCommand");
+            btnDeleteStudents.SetBinding(Button.IsVisibleProperty, "IsDeleleVisible");
+
             ListView studentsRegistred = new ListView();
             studentsRegistred.SetBinding(ListView.ItemsSourceProperty, "Students", BindingMode.OneWay);
 
             StackLayout statckView = new StackLayout
             {
-                BackgroundColor = Color.Blue,
+                BackgroundColor = Color.Transparent,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
-                Padding = 3,
-                Children = {  btnAddStudents, studentsRegistred }
+                Padding = 10,
+                Children = {  btnAddStudents, btnDeleteStudents , studentsRegistred }
             };
 
             Content = statckView;

@@ -65,7 +65,7 @@ namespace Phoneword.Views
 
             Button btnProgress = new Button
             {
-                Text = "Studens Progress",
+                Text = "Progress",
                 Style = StylesButton.ButtonDefault
             };
 

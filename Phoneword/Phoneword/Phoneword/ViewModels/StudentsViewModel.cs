@@ -24,9 +24,31 @@ namespace Phoneword.ViewModels
             }
         }
 
-        private IList<string> students;
+        private ICommand deleteStudentesCommand;
 
-        public IList<string> Students
+        public ICommand DeleteStudentesCommand
+        {
+            get { return deleteStudentesCommand; }
+            set
+            {
+                SetProperty(ref deleteStudentesCommand, value);
+            }
+        }
+
+        private bool isDeleleVisible;
+
+        public bool IsDeleleVisible
+        {
+            get { return isDeleleVisible; }
+            set
+            {
+                SetProperty(ref isDeleleVisible, value);
+            }
+        }
+
+        private List<string> students;
+
+        public List<string> Students
         {
             get { return students; }
             set
@@ -49,10 +71,17 @@ namespace Phoneword.ViewModels
             base.AfterBinding();
             SetCommands();
         }
- 
+
+
         private void SetCommands()
         {
             CreateStudentesCommand = new Command(CreateStudents);
+            DeleteStudentesCommand = new Command(DeleteStudents);
+        }
+
+        private void SetIsDeleteVisible()
+        {
+            IsDeleleVisible = Students != null && Students.Count > 0;
         }
 
         public async void CreateStudents()
@@ -80,6 +109,48 @@ namespace Phoneword.ViewModels
             }
 
             Students = newStudents;
+
+
+        }
+
+        private async void DeleteStudents()
+        {
+            try
+            {
+                progressView = new ProgressView("Students Removed", Students.Count, RemoveStudents);
+
+                await ((Page)PageContext.CurrentPage).Navigation.PushModalAsync(progressView, true);
+            }
+            catch (Exception ex)
+            {
+                await PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
+            }
+        }
+
+        private async void RemoveStudents()
+        {
+            int quantityDeleted = 0;
+
+            List<string> expulsedStudents = new List<string>(Students);
+
+            foreach (string student in Students)
+            {
+                expulsedStudents.Remove(student);
+                quantityDeleted++;
+                await progressView.ReportProgress(quantityDeleted);
+            }
+
+            Students = expulsedStudents;
+        }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (propertyName == nameof(Students))
+            {
+                SetIsDeleteVisible();
+            }
         }
     }
 }
