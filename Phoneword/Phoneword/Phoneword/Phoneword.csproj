@@ -36,4 +36,6 @@
       <LastGenOutput>LanguageResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarPhonewordHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 </Project>
