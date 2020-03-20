@@ -55,6 +55,8 @@ namespace Phoneword.Views
                 Style = StylesButton.ButtonDefault
             };
 
+            btnLogin.SetBinding(Button.CommandProperty, "LoginCommand");
+
             Button btnBarCode = new Button
             {
                 Text = "Bar Code",

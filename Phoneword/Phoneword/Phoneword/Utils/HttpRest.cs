@@ -29,15 +29,16 @@ namespace Phoneword.Utils
 
                 using (var request = new HttpRequestMessage(HttpMethod.Post, "api/authenticate"))
                 {
-                    var json = JsonConvert.SerializeObject(new CredentialsBackEnd { login = login, senha = senha });
+                    var jsonContent = JsonConvert.SerializeObject(new CredentialsBackEnd { login = login, senha = senha });
 
-                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                    request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                     await client.SendAsync(request)
                     .ContinueWith(responseTask =>
                     {
-                        Console.WriteLine("Response: {0}", responseTask.Result);
-                        result = responseTask.Result.Content.ReadAsStringAsync().Result;
+                        string jsonMenssage = responseTask.Result.Content.ReadAsStringAsync().Result;
+                        System.Diagnostics.Debug.WriteLine("====== Response: " + jsonMenssage, "WS-DEGUB"); 
+                        result = jsonMenssage;
                     });
 
 
