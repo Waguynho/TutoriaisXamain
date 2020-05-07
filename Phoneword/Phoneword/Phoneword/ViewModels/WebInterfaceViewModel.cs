@@ -27,8 +27,8 @@ namespace Phoneword.ViewModels
         public override void BeforeBinding()
         {
             base.BeforeBinding();
-            BaseAssetUrl = DependencyService.Get<IBaseUrlAsset>().GetAssetBase() ;
-            Debug.Write("====== {0}" , BaseAssetUrl);
+            BaseAssetUrl = "@" + DependencyService.Get<IBaseUrlAsset>().GetAssetBase() + "index.html";
+            System.Diagnostics.Debug.WriteLine("====== Source: " + BaseAssetUrl.ToString());
         }
     }
 }
