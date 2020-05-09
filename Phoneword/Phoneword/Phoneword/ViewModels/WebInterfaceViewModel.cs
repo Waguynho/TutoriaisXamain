@@ -1,45 +1,77 @@
 ﻿using Phoneword.Utils;
 using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
-using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace Phoneword.ViewModels
 {
     public class WebInterfaceViewModel : ViewModelBase, IWebInterfaceViewModel
     {
-        private string baseAssetUrl = "";
-
-        public string BaseAssetUrl
-        {
-            get { return baseAssetUrl; }
-            set
-            {
-                SetProperty(ref baseAssetUrl, value);
-            }
-        }
-
-        private string htmlContent;
-        public string HtmlContent
-        {
-            get { return htmlContent; }
-            set
-            {
-                SetProperty(ref htmlContent, value);
-            }
-        }
-
         public WebInterfaceViewModel(IPageContext context) : base(context)
         {
 
         }
 
+        HtmlWebViewSource htmlWebViewSource = new HtmlWebViewSource();
+
+        private WebViewSource webSource;
+        public WebViewSource WebSource
+        {
+            get { return webSource; }
+            set
+            {
+                SetProperty(ref webSource, value);
+            }
+        }
+
+        private bool isToggled;
+        public bool IsToggled
+        {
+            get { return isToggled; }
+            set
+            {
+                SetProperty(ref isToggled, value);
+            }
+        }
+
         public override void BeforeBinding()
         {
             base.BeforeBinding();
-            HtmlContent = DependencyService.Get<IAssetHandler>().ReadAssetContent("index.html");
-            BaseAssetUrl = DependencyService.Get<IBaseUrlAsset>().GetAssetBase();
-            System.Diagnostics.Debug.WriteLine("====== Source: " + BaseAssetUrl.ToString());
+            BuildHtmlViewSource();
+            StartWebSource();
+        }
+
+        private void StartWebSource()
+        {
+            WebSource = htmlWebViewSource;
+        }
+
+        private void BuildHtmlViewSource()
+        {
+            htmlWebViewSource.Html = DependencyService.Get<IAssetHandler>().ReadAssetContent("index.html");
+            htmlWebViewSource.BaseUrl = DependencyService.Get<IBaseUrlAsset>().GetAssetBase();
+        }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (nameof(IsToggled) == propertyName)
+            {
+                ChangeSourceWebView();
+            }
+        }
+
+        private void ChangeSourceWebView()
+        {
+            if (IsToggled)
+            {
+                WebSource = "https://wagner.santos.wscompany.com.br/";
+            }
+            else
+            {
+                WebSource = htmlWebViewSource;
+            }             
         }
     }
 }

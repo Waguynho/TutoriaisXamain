@@ -1,6 +1,6 @@
 ﻿using Phoneword.Views.Interfaces;
-using System;
 using Xamarin.Forms;
+
 
 namespace Phoneword.Views
 {
@@ -24,37 +24,30 @@ namespace Phoneword.Views
 
         private void CreateLayout()
         {
-            Label subTitle = new Label();
-            subTitle.Text = "Web View";
-            subTitle.BackgroundColor = Color.White;
-            subTitle.TextColor = Color.Red;
-            subTitle.Margin = 3;
-            subTitle.FontAttributes = FontAttributes.Bold;
-            subTitle.VerticalOptions = LayoutOptions.Fill;
-            subTitle.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            Switch toggle = new Switch
+            {
+                BackgroundColor = Color.BurlyWood,
+                Margin = new Thickness(5, 1),
+                OnColor = Color.AliceBlue,
+                VerticalOptions = LayoutOptions.Fill,
+                HorizontalOptions = LayoutOptions.FillAndExpand,                
+            };
+
+            toggle.SetBinding(Switch.IsToggledProperty, "IsToggled", BindingMode.TwoWay);
 
             WebView web = new WebView();
+            web.SetBinding(WebView.SourceProperty, "WebSource", BindingMode.OneWay);
             web.VerticalOptions = LayoutOptions.FillAndExpand;
             web.HorizontalOptions = LayoutOptions.FillAndExpand;
             web.BackgroundColor = Color.Pink;
-            //web.Source = "https://wagner.santos.wscompany.com.br/";
-
-            HtmlWebViewSource htmlWebViewSource = new HtmlWebViewSource();
-            htmlWebViewSource.SetBinding(HtmlWebViewSource.BaseUrlProperty, "BaseAssetUrl");
-            htmlWebViewSource.SetBinding(HtmlWebViewSource.HtmlProperty, "HtmlContent");
-
-            web.Source = htmlWebViewSource;
-            web.BackgroundColor = Color.Blue;
-            web.VerticalOptions = LayoutOptions.FillAndExpand;
-            web.HorizontalOptions = LayoutOptions.FillAndExpand;
 
             StackLayout statckView = new StackLayout
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
                 Padding = 3,
-                Children = { subTitle, web},
-                BackgroundColor = Color.Red
+                Children = { toggle, web },
+                BackgroundColor = Color.Blue
             };
 
             Content = statckView;

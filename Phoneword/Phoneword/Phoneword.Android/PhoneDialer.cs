@@ -8,7 +8,6 @@ namespace Phoneword.Droid
 {
     public class PhoneDialer : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IDialer
     {
-
         public bool Dial(string number)
         {
             Context ctx = MainActivity.Instance.ApplicationContext;
