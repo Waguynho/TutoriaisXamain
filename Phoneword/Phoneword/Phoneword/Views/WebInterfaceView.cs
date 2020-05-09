@@ -1,4 +1,5 @@
 ﻿using Phoneword.Views.Interfaces;
+using System;
 using Xamarin.Forms;
 
 namespace Phoneword.Views
@@ -36,12 +37,13 @@ namespace Phoneword.Views
             web.VerticalOptions = LayoutOptions.FillAndExpand;
             web.HorizontalOptions = LayoutOptions.FillAndExpand;
             web.BackgroundColor = Color.Pink;
+            //web.Source = "https://wagner.santos.wscompany.com.br/";
 
-            var source = new HtmlWebViewSource();
-            //source.BaseUrl = @"ms-appx-web:///";
-            source.SetBinding(HtmlWebViewSource.BaseUrlProperty, "BaseAssetUrl");
+            HtmlWebViewSource htmlWebViewSource = new HtmlWebViewSource();
+            htmlWebViewSource.SetBinding(HtmlWebViewSource.BaseUrlProperty, "BaseAssetUrl");
+            htmlWebViewSource.SetBinding(HtmlWebViewSource.HtmlProperty, "HtmlContent");
 
-            //web.Source = source;
+            web.Source = htmlWebViewSource;
             web.BackgroundColor = Color.Blue;
             web.VerticalOptions = LayoutOptions.FillAndExpand;
             web.HorizontalOptions = LayoutOptions.FillAndExpand;

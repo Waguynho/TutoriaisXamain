@@ -1,8 +1,12 @@
 html,body {
   margin:0;
   padding:10;
+  position: relative;
 }
-body,p,h1 {
+ p,h1 {
   font-family: Chalkduster;
-  color:blue;
+  color:green;
+  position: absolute;
+  top:50px;
+  left:40%;
 }

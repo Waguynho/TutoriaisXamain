@@ -19,6 +19,16 @@ namespace Phoneword.ViewModels
             }
         }
 
+        private string htmlContent;
+        public string HtmlContent
+        {
+            get { return htmlContent; }
+            set
+            {
+                SetProperty(ref htmlContent, value);
+            }
+        }
+
         public WebInterfaceViewModel(IPageContext context) : base(context)
         {
 
@@ -27,7 +37,8 @@ namespace Phoneword.ViewModels
         public override void BeforeBinding()
         {
             base.BeforeBinding();
-            BaseAssetUrl = "@" + DependencyService.Get<IBaseUrlAsset>().GetAssetBase() + "index.html";
+            HtmlContent = DependencyService.Get<IFileHandler>().ReadContentFile("index.html");
+            BaseAssetUrl = DependencyService.Get<IBaseUrlAsset>().GetAssetBase();
             System.Diagnostics.Debug.WriteLine("====== Source: " + BaseAssetUrl.ToString());
         }
     }
