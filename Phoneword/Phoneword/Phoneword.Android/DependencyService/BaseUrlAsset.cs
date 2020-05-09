@@ -1,9 +1,10 @@
-﻿using Phoneword.Droid;
+﻿using Phoneword.Android.DependencyService;
+using Phoneword.Droid;
 using Phoneword.Utils;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(BaseUrlAsset))]
-namespace Phoneword.Droid
+namespace Phoneword.Android.DependencyService
 {
     public class BaseUrlAsset : IBaseUrlAsset
     {

@@ -1,13 +1,14 @@
 ﻿using Phoneword.Utils;
+using Phoneword.UWP.DependencyService;
 using System;
 using System.Collections;
 using System.IO;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(FileHandler))]
-namespace Phoneword.Utils
+[assembly: Dependency(typeof(AssetHandler))]
+namespace Phoneword.UWP.DependencyService
 {
-    public class FileHandler: IAssetHandler
+    public class AssetHandler : IAssetHandler
     {
         public string ReadAssetContent(string assetName)
         {
@@ -42,3 +43,4 @@ namespace Phoneword.Utils
         }
     }
 }
+

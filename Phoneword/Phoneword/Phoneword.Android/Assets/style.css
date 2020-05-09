@@ -3,7 +3,7 @@ html,body {
   padding:10;
   position: relative;
 }
- p,h1 {
+ h1 {
   font-family: Chalkduster;
   color:blue;
   position: absolute;

@@ -1,12 +1,13 @@
 ﻿using Android.Content.Res;
 using Android.Util;
+using Phoneword.Android.DependencyService;
 using Phoneword.Droid;
 using Phoneword.Utils;
 using System.IO;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AssetHandler))]
-namespace Phoneword.Droid
+namespace Phoneword.Android.DependencyService
 {
     public class AssetHandler : IAssetHandler
     {
