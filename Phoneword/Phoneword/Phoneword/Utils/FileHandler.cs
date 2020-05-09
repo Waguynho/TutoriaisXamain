@@ -7,13 +7,13 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(FileHandler))]
 namespace Phoneword.Utils
 {
-    public class FileHandler: IFileHandler
+    public class FileHandler: IAssetHandler
     {
-        public string ReadContentFile(string nameFile)
+        public string ReadAssetContent(string assetName)
         {
             FindFoldersPath();
 
-            string fileName = Path.Combine(Environment.CurrentDirectory, nameFile);
+            string fileName = Path.Combine(Environment.CurrentDirectory, assetName);
 
             if (File.Exists(fileName))
             {

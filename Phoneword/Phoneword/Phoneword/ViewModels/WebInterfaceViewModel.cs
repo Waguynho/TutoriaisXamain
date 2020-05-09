@@ -37,7 +37,7 @@ namespace Phoneword.ViewModels
         public override void BeforeBinding()
         {
             base.BeforeBinding();
-            HtmlContent = DependencyService.Get<IFileHandler>().ReadContentFile("index.html");
+            HtmlContent = DependencyService.Get<IAssetHandler>().ReadAssetContent("index.html");
             BaseAssetUrl = DependencyService.Get<IBaseUrlAsset>().GetAssetBase();
             System.Diagnostics.Debug.WriteLine("====== Source: " + BaseAssetUrl.ToString());
         }
