@@ -72,13 +72,6 @@ namespace Phoneword.Utils
                         return "Sem sucesso a sua requisição: ";
                     }
 
-                    //.ContinueWith(responseTask =>
-                    //{
-                    //    string jsonMenssage = responseTask.Result.Content.ReadAsStringAsync().Result;
-                    //    System.Diagnostics.Debug.WriteLine("====== Response: " + jsonMenssage, "WS-DEGUB");
-                    //    result = jsonMenssage;
-                    //});
-
                     return result;
                 }
             }
