@@ -24,7 +24,7 @@ namespace Phoneword.UWP.Renders
             if (wEntry.InvertedFlow)
             {
                 Control.FlowDirection = Windows.UI.Xaml.FlowDirection.RightToLeft;
-                Control.Background = new SolidColorBrush(Windows.UI.Colors.BlueViolet);
+                Control.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.BlueViolet);
             }
         }
     }
