@@ -195,7 +195,6 @@ namespace Phoneword.ViewModels
 
         private async void TinderUpdate()
         {
-
             try
             {
                 HttpRest httpRest = new HttpRest();
@@ -233,8 +232,7 @@ namespace Phoneword.ViewModels
             {
                 HttpRest httpRest = new HttpRest();
 
-                //var result = await httpRest.AuthenticateCarsApi(Login, PassWord);
-                var result = await httpRest.GetRequest(Statics.BaseUriPhoneWord, "XXXtinder/Luana.json");
+                var result = await httpRest.AuthenticateCarsApi(Login, PassWord);
 
                 await PageContext.ShowMessage("Aviso", result, "cancelar");
             }

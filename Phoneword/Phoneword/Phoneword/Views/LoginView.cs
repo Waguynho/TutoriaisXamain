@@ -129,7 +129,10 @@ namespace Phoneword.Views
                 Children = { subTitle, login, loginInput, passWord, passWordInput, btnEnter, line, nameLabel, nameInput, descriptionLabel, descriptionInput, ratingLabel , ratingInput, moodLabel, moodInput, btnUpSert }
             };
 
-            Content = statckView;
+            ScrollView scrollView = new ScrollView();
+            scrollView.Content = statckView;
+
+            Content = scrollView;
         }
 
         private void SetBehaviorsForPassWord(Entry passWordInput)
