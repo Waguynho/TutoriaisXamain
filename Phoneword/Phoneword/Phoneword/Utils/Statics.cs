@@ -24,9 +24,14 @@ namespace Phoneword.Utils
             get { return Color.Black; }
         }
 
-        public static string BaseUriBackEnd
+        public static string BaseUriCars
         {
             get { return "http://node1.wscompany.com.br/api"; }
+        }
+
+        public static string BaseUriPhoneWord
+        {
+            get { return "https://phoneword-acf12.firebaseio.com/"; }
         }
     }
 }

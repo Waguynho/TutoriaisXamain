@@ -59,12 +59,74 @@ namespace Phoneword.Views
 
             btnEnter.SetBinding(Button.CommandProperty, "OnReturnToken");
 
+            #region FireBaseDb
+
+            BoxView line = new BoxView();
+            line.Color = Color.Silver;
+            line.HeightRequest = 9;
+            line.Margin = 5;
+            line.VerticalOptions = LayoutOptions.Fill;
+            line.HorizontalOptions = LayoutOptions.FillAndExpand;
+
+            Label nameLabel = new Label();
+            nameLabel.Text = "Nome";
+            nameLabel.TextColor = Color.White;
+            nameLabel.FontAttributes = FontAttributes.Bold;
+
+            WEntry nameInput = new WEntry();
+            nameInput.Style = StylesEntry.EntryDefault;
+            nameInput.SetBinding(Entry.TextProperty, "Name", BindingMode.OneWayToSource);
+
+            Label descriptionLabel = new Label();
+            descriptionLabel.Text = "Descrição";
+            descriptionLabel.TextColor = Color.White;
+            descriptionLabel.FontAttributes = FontAttributes.Bold;
+            descriptionLabel.SetBinding(Entry.TextProperty, "Description", BindingMode.OneWayToSource);
+
+
+
+            WEntry descriptionInput = new WEntry();
+            descriptionInput.Style = StylesEntry.EntryDefault;
+            descriptionInput.Keyboard = Keyboard.Text;
+            descriptionInput.SetBinding(Entry.TextProperty, "Description", BindingMode.TwoWay);
+
+            Label ratingLabel = new Label();
+            ratingLabel.Text = "Nota";
+            ratingLabel.TextColor = Color.White;
+            ratingLabel.FontAttributes = FontAttributes.Bold;
+
+            WEntry ratingInput = new WEntry();
+            ratingInput.Style = StylesEntry.EntryDefault;
+            ratingInput.Keyboard = Keyboard.Numeric;
+            ratingInput.SetBinding(Entry.TextProperty, "Rating", BindingMode.TwoWay);
+
+            Label moodLabel = new Label();
+            moodLabel.Text = "Humor";
+            moodLabel.TextColor = Color.White;
+            moodLabel.FontAttributes = FontAttributes.Bold;
+
+            WEntry moodInput = new WEntry();
+            moodInput.Style = StylesEntry.EntryDefault;
+            moodInput.Keyboard = Keyboard.Numeric;
+            moodInput.SetBinding(Entry.TextProperty, "Mood", BindingMode.TwoWay);
+
+            Button btnUpSert = new Button
+            {
+                Text = "Upsert",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnUpSert.SetBinding(Button.CommandProperty, "OnReturnTinder");
+
+
+            #endregion
+
             StackLayout statckView = new StackLayout
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
                 Padding = 3,
-                Children = { subTitle, login, loginInput, passWord, passWordInput, btnEnter }
+                Children = { subTitle, login, loginInput, passWord, passWordInput, btnEnter, line, nameLabel, nameInput, descriptionLabel, descriptionInput, ratingLabel , ratingInput, moodLabel, moodInput, btnUpSert }
             };
 
             Content = statckView;
