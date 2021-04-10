@@ -4,8 +4,8 @@
   <color name="dark_blue">#00001a</color>
   <color name="color_c">#ffffcc</color>
   <color name="verde_claro">#4dff4d</color>  
-  <color name="cinza_mediano">#666699</color>  
-  <color name="cinza_claro">#f0f0f5</color>  
+  <color name="cinza_mediano">#666699</color>
+  <color name="cinza_claro">@color/abc_primary_text_disable_only_material_dark</color>
   <color name="laranja_claro">#ffa366</color> 
   <color name="branco">#ffffff</color>
   <color name="pink">#ff4dd2</color> 

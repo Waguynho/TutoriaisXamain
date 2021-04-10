@@ -118,6 +118,16 @@ namespace Phoneword.ViewModels
 
         public void ExecuteTranslate()
         {
+            try
+            {
+              
+            }
+            catch (Exception e)
+            {
+
+                PageContext.ShowMessage("Problema",e.Message, "OK");
+            }
+     
             string translated = Core.PhonewordTranslator.ToNumber(TranslatedNumber);
 
             if (!string.IsNullOrWhiteSpace(TranslatedNumber))
@@ -131,6 +141,8 @@ namespace Phoneword.ViewModels
                 CallButtonText = LanguageResource.call;
             }
         }
+
+
 
         public ICommand ShowMonsterCommand { get; set; }
 

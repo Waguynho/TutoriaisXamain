@@ -1,5 +1,4 @@
-﻿using Phoneword.Controls;
-using Phoneword.ViewModels.Interfaces;
+﻿using Phoneword.ViewModels.Interfaces;
 using Phoneword.Views.Interfaces;
 using System;
 using System.Windows.Input;
@@ -20,6 +19,7 @@ namespace Phoneword.ViewModels
         public ICommand LoginCommand { private set; get; }
         public ICommand BarCodeCommand { private set; get; }
         public ICommand StudentsCommand { private set; get; }
+        public ICommand BleCommand { private set; get; }
 
         public void ExecuteDataTemplate()
         {
@@ -88,6 +88,18 @@ namespace Phoneword.ViewModels
             }
         }
 
+        public async void ExecuteBle()
+        {
+            try
+            {
+                await PageContext.NavigateTo<IBleView, IBleViewModel>();
+            }
+            catch (Exception ex)
+            {
+                await PageContext.CurrentPage.DisplayAlert("Erro", ex.Message, "OK");
+            }
+        }
+        
         public void Teste(string result)
         {
             Device.BeginInvokeOnMainThread(() => {
@@ -116,6 +128,7 @@ namespace Phoneword.ViewModels
             LoginCommand = new Command(ExecuteLogin);
             BarCodeCommand = new Command(ExecuteBarCode);
             StudentsCommand = new Command(CreateStudents);
+            BleCommand = new Command(ExecuteBle);
         }
     }
 }

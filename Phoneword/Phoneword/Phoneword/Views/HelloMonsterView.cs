@@ -25,6 +25,14 @@ namespace Phoneword.Views
                 })
             };
 
+            Button btnBle = new Button
+            {
+                Text = "Bluetooth",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnBle.SetBinding(Button.CommandProperty, "BleCommand");
+
             Button btnToDataTemplate = new Button
             {
                 Text = "DataTemplates",
@@ -78,7 +86,7 @@ namespace Phoneword.Views
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
-                Children = { btnToGrid, btnToDataTemplate, btnFileAccess, btnWebInterface, btnLogin, btnBarCode, btnProgress },
+                Children = { btnToGrid, btnBle ,btnToDataTemplate, btnFileAccess, btnWebInterface, btnLogin, btnBarCode, btnProgress },
                 Padding = 5
             };
 
