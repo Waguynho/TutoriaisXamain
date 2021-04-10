@@ -124,16 +124,17 @@ namespace Phoneword.Droid.DependencyService
 
                     if (bthSocket != null)
                     {
-                        
+
                         await bthSocket.ConnectAsync();
 
                         if (bthSocket.IsConnected)
                         {
                             System.Diagnostics.Debug.WriteLine("Connected!");
-                          
-                                byte[] toSend = Encoding.ASCII.GetBytes("0");
 
-                                await bthSocket.OutputStream.WriteAsync(toSend, 0, toSend.Count());
+                            byte[] toSend = new byte[1];
+                            toSend[0] = (byte)data;
+
+                            await bthSocket.OutputStream.WriteAsync(toSend, 0, toSend.Count());
 
                         }
                         else
@@ -145,9 +146,9 @@ namespace Phoneword.Droid.DependencyService
                         await Task.Delay(1500);
                         if (bthSocket != null)
                         {
-                             bthSocket.Close(); 
+                            bthSocket.Close();
                         }
-                        
+
                     }
                 }
             }

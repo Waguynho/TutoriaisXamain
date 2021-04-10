@@ -30,6 +30,7 @@ namespace Phoneword.ViewModels
             if (SelectedItem != null)
             {
                 _ = bleService.Connect(SelectedItem);
+                Feedback = "CONECTADO!";
             }
         }
 
@@ -69,15 +70,37 @@ namespace Phoneword.ViewModels
             set { SetProperty(ref selectedItem, value); }
         }
 
+        private bool isToggled;
+
+        public bool IsToggled
+        {
+            get { return isToggled; }
+            set { SetProperty(ref isToggled, value); }
+        }
+
+        private string feedback = "Aguardando Ação...";
+        public string Feedback
+        {
+            get { return feedback; }
+            set { SetProperty(ref feedback, value); }
+        }
+
         private async void ExecuteWrite(object arg)
         {
             await Task.Run(async () =>
             {
+                if (arg != null && arg is char)
+                {
+                    bleService.WriteData((char)arg);
+                }
+                else
+                {
+                    bleService.WriteData('0');
+                }
 
-                bleService.WriteData('0');
             });
 
-           //await PageContext.CurrentPage.DisplayAlert("AVISO!", "Enviou dados", "CLOSE");
+            //await PageContext.CurrentPage.DisplayAlert("AVISO!", "Enviou dados", "CLOSE");
         }
 
         private void Connect()
@@ -89,9 +112,9 @@ namespace Phoneword.ViewModels
             catch (Exception ex)
             {
 
-                string msg = ex.Message; 
+                string msg = ex.Message;
             }
-//            PageContext.ShowMessage("CONECTED", "Device conected ", "OK");
+            //            PageContext.ShowMessage("CONECTED", "Device conected ", "OK");
         }
 
         private void OnDiscoverDevice(BluetoothDeviceBase deviceBase)
@@ -109,6 +132,14 @@ namespace Phoneword.ViewModels
         protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
+
+            if (propertyName == nameof(IsToggled))
+            {
+                char charToSend = IsToggled ? '1' : '0';
+                Feedback = IsToggled ? "DIREITA" : "ESQUERDA";
+                System.Diagnostics.Debug.WriteLine("YOU SENT::: "+charToSend);
+                ExecuteWrite(charToSend);
+            }
         }
     }
 }

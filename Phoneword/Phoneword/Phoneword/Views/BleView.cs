@@ -45,6 +45,17 @@ namespace Phoneword.Views
 
             btgWrite.SetBinding(Button.CommandProperty, "WriteCommand");
 
+            Xamarin.Forms.Switch toogleButton = new Xamarin.Forms.Switch();
+
+            toogleButton.SetBinding(Xamarin.Forms.Switch.IsToggledProperty, "IsToggled", BindingMode.OneWayToSource);
+            toogleButton.HorizontalOptions = LayoutOptions.FillAndExpand;
+            toogleButton.BackgroundColor = Color.FromHex("#C9EBE4");
+            toogleButton.ThumbColor = Color.Red;
+            toogleButton.OnColor = Color.Green;
+            //toogleButton.Scale = 2;
+            toogleButton.WidthRequest = 70;
+            toogleButton.HeightRequest = 80;
+
             var listView = new ListView
             {
                 RowHeight = 40
@@ -55,12 +66,22 @@ namespace Phoneword.Views
 
             listView.SetBinding(ListView.ItemsSourceProperty, "Devices", BindingMode.Default);
             listView.SetBinding(ListView.SelectedItemProperty, "SelectedItem", BindingMode.TwoWay);
-            
+            listView.VerticalOptions = LayoutOptions.FillAndExpand;
+
+
+            Label feedback = new Label();
+            feedback.HorizontalOptions = LayoutOptions.Center;
+            feedback.VerticalOptions = LayoutOptions.FillAndExpand;
+            feedback.Margin = new Thickness(5, 20);
+            feedback.FontSize = Device.GetNamedSize(NamedSize.Large, feedback);
+            feedback.TextColor = Color.White;
+            feedback.FontAttributes = FontAttributes.Bold;
+            feedback.SetBinding(Label.TextProperty, "Feedback", BindingMode.OneWay);
 
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Children = {btnScan, btnConnect , btgWrite, listView }
+                Children = {btnScan, btnConnect , toogleButton, /*btgWrite,*/ listView, feedback }
             };
         }
 
