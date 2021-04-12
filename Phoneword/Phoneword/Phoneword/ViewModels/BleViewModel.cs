@@ -103,7 +103,7 @@ namespace Phoneword.ViewModels
             //await PageContext.CurrentPage.DisplayAlert("AVISO!", "Enviou dados", "CLOSE");
         }
 
-        private void Connect()
+        private void Connect(string connectMenssage)
         {
             try
             {

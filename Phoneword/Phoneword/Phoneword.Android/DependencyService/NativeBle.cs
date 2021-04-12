@@ -16,8 +16,7 @@ using Xamarin.Forms;
 namespace Phoneword.Droid.DependencyService
 {
     public class NativeBle : IBleService
-    {
-        public string MessageToSend { get; set; } = "0";
+    {        
 
         BluetoothDevice paredDevice = null;
 
@@ -27,7 +26,7 @@ namespace Phoneword.Droid.DependencyService
 
         private static BluetoothAdapter mBluetoothAdapter = null;
         private double timeOut = 10;
-        public Action OnConnect { get; set; }
+        public Action<string> OnConnect { get; set; }
         public Action<BluetoothDeviceBase> OnDiscover { get; set; }
 
         public NativeBle()
@@ -63,21 +62,18 @@ namespace Phoneword.Droid.DependencyService
 
                 await ConnectDevice(bluetoothDeviceBase.Name);
 
+                if (OnConnect != null)
+                {
+                    OnConnect.Invoke("CONECTADO!");
+                }
+
             }
             catch (System.Exception eX)
             {
-                //en caso de generarnos error cerramos el socket
-                string err = eX.Message;
-                try
+                if (OnConnect != null)
                 {
-                    //btSocket.Close();
-
-                }
-                catch (System.Exception se)
-                {
-                    string msg2 = se.Message;
-                    await Task.Delay(100);
-                }
+                    OnConnect.Invoke("Erro: " + eX.Message);
+                }              
 
                 await Task.Delay(100);
             }
@@ -189,21 +185,10 @@ namespace Phoneword.Droid.DependencyService
 
         }
 
-        public List<string> PairedDevices()
-        {
-
-            List<string> devices = new List<string>();
-
-            foreach (var bd in mBluetoothAdapter.BondedDevices)
-                devices.Add(bd.Name);
-
-            return devices;
-        }
         private async Task ConnectDevice(string name)
         {
             try
             {
-
                 await Task.Delay(500);
 
                 if (mBluetoothAdapter == null)

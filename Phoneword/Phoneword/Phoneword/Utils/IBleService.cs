@@ -9,7 +9,7 @@ namespace Phoneword.Utils
         Task Scan();
         Task Connect(BluetoothDeviceBase deviceBase);
         void WriteData(char data);
-        Action OnConnect { get; set; }
+        Action<string> OnConnect { get; set; }
         Action<BluetoothDeviceBase> OnDiscover { get; set; }
         
     }
