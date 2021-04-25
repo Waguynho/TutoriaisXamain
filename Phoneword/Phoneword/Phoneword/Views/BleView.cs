@@ -78,10 +78,18 @@ namespace Phoneword.Views
             feedback.FontAttributes = FontAttributes.Bold;
             feedback.SetBinding(Label.TextProperty, "Feedback", BindingMode.OneWay);
 
+            Button btnRgb = new Button
+            {
+                Text = "RGB",
+                Style = StylesButton.ButtonDefault
+            };
+
+            btnRgb.SetBinding(Button.CommandProperty, "RgbCommand");
+
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Children = {btnScan, btnConnect , toogleButton, /*btgWrite,*/ listView, feedback }
+                Children = {btnScan, btnConnect , toogleButton, /*btgWrite,*/ listView, feedback, btnRgb }
             };
         }
 

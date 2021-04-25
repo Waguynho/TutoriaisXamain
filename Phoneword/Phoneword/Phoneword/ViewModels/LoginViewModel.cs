@@ -21,6 +21,22 @@ namespace Phoneword.ViewModels
             }
         }
 
+        private bool isFocused;
+
+        public bool IsFocused
+        {
+            get { return isFocused; }
+            set
+            {
+                if (isFocused != value)
+                {
+                    isFocused = value;
+                }
+
+            }
+        }
+
+
         private ICommand onReturnToken;
 
         public ICommand OnReturnToken
@@ -147,7 +163,7 @@ namespace Phoneword.ViewModels
             }
         }
 
-        private string KeepLimits(string value )
+        private string KeepLimits(string value)
         {
             int number = int.Parse(value);
 
@@ -178,7 +194,7 @@ namespace Phoneword.ViewModels
             OnReturnTinder = new Command(TinderUpdate);
         }
 
- 
+
 
         private void ChangeColor()
         {
@@ -207,7 +223,7 @@ namespace Phoneword.ViewModels
                 string request = Statics.BaseUriPhoneWord + "tinder/" + Name + ".json";
                 string body = Newtonsoft.Json.JsonConvert.SerializeObject(tinder);
                 int x;
-               string result = await httpRest.PutRequest(request, body);
+                string result = await httpRest.PutRequest(request, body);
 
                 if (result == "OK")
                 {

@@ -16,7 +16,7 @@ using Xamarin.Forms;
 //[assembly: Dependency(typeof(BleService))]
 namespace Phoneword.Droid.DependencyService
 {
-    public class BleService : IBleService
+    public class BleService //: IBleService
     {
         private string namesChar = string.Empty;
         private double timeOut = 10;
@@ -24,7 +24,7 @@ namespace Phoneword.Droid.DependencyService
         private static BluetoothLE.Core.IAdapter _bluetoothAdapter;
 
 
-        public Action OnConnect { get; set; }
+        public Action<string> OnConnect { get; set; }
         public Action<BluetoothDeviceBase> OnDiscover { get; set; }
         public BleService()
         {
@@ -107,7 +107,7 @@ namespace Phoneword.Droid.DependencyService
             var native = e.Device.NativeDevice;
             if (OnConnect != null)
             {
-                OnConnect.Invoke();
+                OnConnect.Invoke("Connected");
             }
 
           

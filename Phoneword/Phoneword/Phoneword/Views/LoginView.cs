@@ -76,6 +76,7 @@ namespace Phoneword.Views
             WEntry nameInput = new WEntry();
             nameInput.Style = StylesEntry.EntryDefault;
             nameInput.SetBinding(Entry.TextProperty, "Name", BindingMode.OneWayToSource);
+            nameInput.SetBinding(Entry.IsFocusedProperty, "IsFocused", BindingMode.OneWayToSource);
 
             Label descriptionLabel = new Label();
             descriptionLabel.Text = "Descrição";

@@ -17,12 +17,13 @@ namespace Phoneword.ViewModels
         public BleViewModel(IPageContext context) : base(context)
         {
             bleService = DependencyService.Get<IBleService>(DependencyFetchTarget.GlobalInstance);
-            bleService.OnDiscover = OnDiscoverDevice;
-            bleService.OnConnect = Connect;
+            //bleService.OnDiscover = OnDiscoverDevice;
+            //bleService.OnConnect = Connect;
             Devices = new ObservableCollection<BluetoothDeviceBase>();
             ScanCommand = new Command(ExecuteScan);
             ConnectCommand = new Command(ExecuteConnect);
             WriteCommand = new Command(ExecuteWrite);
+            RgbCommand = new Command(OpenRgbView);
         }
 
         private void ExecuteConnect()
@@ -52,6 +53,7 @@ namespace Phoneword.ViewModels
         public ICommand ScanCommand { private set; get; }
         public ICommand ConnectCommand { private set; get; }
         public ICommand WriteCommand { private set; get; }
+        public ICommand RgbCommand { private set; get; }
 
         private ObservableCollection<BluetoothDeviceBase> devices;
 
@@ -101,6 +103,11 @@ namespace Phoneword.ViewModels
             });
 
             //await PageContext.CurrentPage.DisplayAlert("AVISO!", "Enviou dados", "CLOSE");
+        }
+
+        private async void OpenRgbView()
+        {
+            await PageContext.NavigateTo<IRgbView, IRgbViewModel>();
         }
 
         private void Connect(string connectMenssage)

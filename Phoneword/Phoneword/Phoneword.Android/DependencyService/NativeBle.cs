@@ -5,10 +5,7 @@ using Phoneword.Droid.DependencyService;
 using Phoneword.Models;
 using Phoneword.Utils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
