@@ -52,7 +52,6 @@
     <BundleAssemblies>false</BundleAssemblies>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <EnableProguard>false</EnableProguard>
     <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
@@ -129,7 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Phoneword\Phoneword.csproj">
-      <Project>{143AF75C-F3BB-409C-B5C0-68399F049B0F}</Project>
+      <Project>{BACFA84A-B163-4ED1-82BB-0492BFD239C1}</Project>
       <Name>Phoneword</Name>
     </ProjectReference>
   </ItemGroup>

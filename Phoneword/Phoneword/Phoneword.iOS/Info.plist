@@ -25,7 +25,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Phoneword</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.Phoneword</string>
+	<string>com.wscompany.TestWs</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -34,7 +34,7 @@
 	<string>Phoneword</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-    <key>NSCameraUsageDescription</key>
+	<key>NSCameraUsageDescription</key>
 	<string>Please allow access to the camera to scan barcodes</string>
 </dict>
 </plist>
