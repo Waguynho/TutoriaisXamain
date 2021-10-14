@@ -1,40 +1,15 @@
-﻿using Phoneword.Views.Interfaces;
+﻿using Phoneword.Styles;
+using Phoneword.Views.Interfaces;
 using System;
+using System.Windows.Input;
 using Xamarin.Forms;
-using ZXing;
-using ZXing.Net.Mobile.Forms;
+
 
 namespace Phoneword.Views
 {
-    public class BarCodeReaderView : ZXingScannerPage, IBarCodeReaderView
+    public class BarCodeReaderView : ContentPage, IBarCodeReaderView
     {
-
-        public ScanResultDelegate ResultCommand
-        {
-            get
-            {
-
-                return (ScanResultDelegate)GetValue(ResultCommandProperty);
-            }
-            set
-            {
-                SetValue(ResultCommandProperty, value);
-            }
-        }
-
-        public static readonly BindableProperty ResultCommandProperty = BindableProperty.Create(
-          propertyName: nameof(ResultCommand),
-          returnType: typeof(ScanResultDelegate),
-          declaringType: typeof(BarCodeReaderView),
-          defaultValue: null,
-          defaultBindingMode: BindingMode.TwoWay,
-          propertyChanged: OnEnterChanged
-          );
-
-        private static void OnEnterChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            (bindable as BarCodeReaderView).OnScanResult += (ScanResultDelegate)newValue;
-        }
+    
 
         public BarCodeReaderView()
         {
@@ -44,48 +19,28 @@ namespace Phoneword.Views
             resultText.SetBinding(Label.TextProperty, "TextResult");
 
 
-            #region temp ws
-            this.SetBinding(BarCodeReaderView.ResultCommandProperty, "OnScanResult");
-            this.SetBinding(ZXingScannerPage.IsScanningProperty, "IsCanning");
-            #endregion
+            Button scanButton = new Button
+            {
+                Text = "Scan Code",
+                Style = StylesButton.ButtonDefault
+            };
 
-
-            //this.OnScanResult += this.ScanView_OnScanResult;
-
-
-
-
-
-            //scanView.SetBinding(ZXingScannerView.ScanResultCommandProperty, "OnScanResult");
-            //scanView.SetBinding(ZXingScannerView.IsScanningProperty, "IsCanning");
+            scanButton.SetBinding(Button.CommandProperty, "ReadBarCodeCommand");
 
             StackLayout stackMain = new StackLayout
             {
                 Orientation = StackOrientation.Vertical,
-                Children = { resultText },
-                Padding = 5
+                Children = { scanButton ,resultText },
+                Padding = 5,
+                HeightRequest = 10
             };
 
-            ScrollView scroll = new ScrollView();
-            scroll.Content = stackMain;
+            this.BackgroundColor = Color.Purple;
 
-           // Content = scroll;
-        }
-
-        private void ScanView_OnScanResult(ZXing.Result result)
-        {
-            Console.WriteLine(result);
+         
+            Content = stackMain;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-           // this.IsScanning = true;
-        }
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            //this.IsScanning = false;
-        }
+      
     }
 }

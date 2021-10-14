@@ -101,6 +101,7 @@
     <None Include="Info.plist" />
     <Compile Include="PhoneDialer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DependencyService\BarCodeReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -176,5 +177,8 @@
       <Project>{BACFA84A-B163-4ED1-82BB-0492BFD239C1}</Project>
       <Name>Phoneword</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DependencyService\" />
   </ItemGroup>
 </Project>

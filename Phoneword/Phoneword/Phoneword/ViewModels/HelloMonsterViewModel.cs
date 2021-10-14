@@ -61,14 +61,7 @@ namespace Phoneword.ViewModels
         {
             try
             {
-                await PageContext.NavigateTo<IBarCodeReaderView, IBarCodeReaderViewModel>(
-                    vm =>
-               {
-                   {
-                       vm.ResultCallBack = Teste;
-                   }
-               }
-                );
+                await PageContext.NavigateTo<IBarCodeReaderView, IBarCodeReaderViewModel>();
             }
             catch (Exception ex)
             {
