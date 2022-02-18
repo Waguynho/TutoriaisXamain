@@ -94,7 +94,7 @@ namespace Phoneword.ViewModels
         private bool isSecretWord()
         {
 
-            if (!string.IsNullOrEmpty(CopyText) && CopyText.ToLower().Contains("maria") && CopyText.ToLower().Contains("paula"))
+            if (!string.IsNullOrEmpty(CopyText) && CopyText.ToLower().Contains("Sarah") && CopyText.ToLower().Contains("Alvez"))
             {
                 return true;
             }
@@ -104,7 +104,7 @@ namespace Phoneword.ViewModels
 
         private bool IsExpiredLicense()
         {
-            DateTime limiteDate = new DateTime(2021, 12, 25, 15, 30, 59);
+            DateTime limiteDate = new DateTime(2023, 12, 31, 23, 59, 59);
 
             if (DateTime.Now > limiteDate)
             {
@@ -122,7 +122,7 @@ namespace Phoneword.ViewModels
         private void SetDefualValues()
         {
             LimitRepetition = 30;
-            CopyText = "paula maria";
+            CopyText = "Sarah Alvez";
         }
 
         public override void AfterBinding()
